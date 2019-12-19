@@ -1,9 +1,7 @@
 package engine.visual;
 
-import engine.ResourceReader;
 import engine.sound.AudioManager;
 import engine.visual.drawable.Drawable;
-import engine.visual.drawable.Layer;
 import engine.visual.screen.ScreenArea;
 import engine.visual.screen.ScreenSettings;
 import javafx.application.Application;
@@ -14,7 +12,6 @@ import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -48,13 +45,15 @@ public class Game extends Application {
 
     public void testDraw() {//
         try {//
-            Layer layer = new Layer("ground");//
             Drawable drawable = new Drawable(
                     new ScreenArea(10, 20, 200, 100),
                     ImageIO.read(new File("D:\\Persoonlijk\\Projecten\\Java Game Engine\\resources\\testsheet.png")));//image
-            layer.getDrawables().add(drawable);
-            RenderManager.getInstance().getLayers().add(layer);
-            //RenderManager.getInstance().draw();
+            RenderManager.getInstance().addDrawable(drawable);
+            RenderManager.getInstance().addDrawable(drawable);
+            RenderManager.getInstance().addDrawable(drawable);
+            RenderManager.getInstance().addDrawable(drawable);
+            RenderManager.getInstance().draw();
+            System.out.println(RenderManager.getInstance());
         } catch (IOException e) {
             e.printStackTrace();
         }//

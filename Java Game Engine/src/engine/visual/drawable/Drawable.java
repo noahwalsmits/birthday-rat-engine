@@ -9,6 +9,7 @@ public class Drawable {
     private ScreenArea screenArea;
     private BufferedImage image;
     private OnDrawableUpdate onDrawableUpdate;
+    private int priority;
 
     public Drawable(ScreenArea screenArea, BufferedImage image) {
         this.screenArea = screenArea;
@@ -36,11 +37,25 @@ public class Drawable {
         return screenArea;
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
     public void setOnDrawableUpdate(OnDrawableUpdate onDrawableUpdate) {
 
     }
 
     public interface OnDrawableUpdate {
         void onUpdate(ScreenArea screenArea, long time);
+    }
+
+    @Override
+    public String toString() {
+        return "Drawable{" +
+                "screenArea=" + screenArea +
+                ", image=" + image +
+                ", onDrawableUpdate=" + (onDrawableUpdate != null) +
+                ", priority=" + priority +
+                '}';
     }
 }

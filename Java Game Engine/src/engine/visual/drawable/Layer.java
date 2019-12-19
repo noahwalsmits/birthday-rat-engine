@@ -1,17 +1,15 @@
 package engine.visual.drawable;
 
 import engine.visual.animation.ConfigClass;
-import engine.visual.drawable.Drawable;
+import org.jfree.fx.FXGraphics2D;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-
-import org.jfree.fx.FXGraphics2D;
 
 /**
+ * @deprecated Multi-threaded drawing is not possible, so there is no need for this class
  * A group of drawables to be drawn on the same layer. They are not supposed to overlap eachother.
  * Minimizing the amount of layers used should increase performance when drawing.
  */
@@ -24,7 +22,8 @@ public class Layer {
 
     /**
      * Creates a Layer object.
-     * @param name The name that can be used to find this layer, used to enable/disable this layer. The default name is "".
+     *
+     * @param name     The name that can be used to find this layer, used to enable/disable this layer. The default name is "".
      * @param priority Determines when this layer gets drawn in relation to other layers. The lowest number gets drawn the earliest.
      */
     public Layer(String name, byte priority) {
@@ -48,7 +47,7 @@ public class Layer {
     }
 
     public void draw(FXGraphics2D graphics) {
-        for (Drawable drawable: this.drawables) {
+        for (Drawable drawable : this.drawables) {
             drawable.draw(graphics); //
             //this.threads.execute(() -> drawable.draw(graphics));
         }

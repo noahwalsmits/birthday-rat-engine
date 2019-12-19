@@ -44,13 +44,14 @@ public class ScreenArea {
     }
 
     public boolean isInsideScreen() {
-        if (this.getX() >= 0 &&
-        this.getY() >= 0 &&
-        this.getX() + this.getWidth() <= ScreenSettings.screenWidth &&
-        this.getY() + this.getHeight() <= ScreenSettings.screenHeight) {
-            return true;
-        }
-        return false;
+        return this.getX() >= 0 &&
+                this.getY() >= 0 &&
+                this.getX() + this.getWidth() <= ScreenSettings.screenWidth &&
+                this.getY() + this.getHeight() <= ScreenSettings.screenHeight;
     }
 
+    @Override
+    public String toString() {
+        return "ScreenArea{(" + baseX + ", " + baseY + "), " + baseWidth + "x" + baseHeight + "}";
+    }
 }

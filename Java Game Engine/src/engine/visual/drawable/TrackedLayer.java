@@ -1,12 +1,10 @@
 package engine.visual.drawable;
 
 import engine.visual.animation.ConfigClass;
-import engine.visual.drawable.Layer;
 import org.jfree.fx.FXGraphics2D;
 
 /**
- * @deprecated
- * A layer that can be searched for by it's name, so that it can be found and disabled/enabled;
+ * @deprecated A layer that can be searched for by it's name, so that it can be found and disabled/enabled;
  */
 public class TrackedLayer extends Layer {
     private String name;

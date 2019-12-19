@@ -32,7 +32,7 @@ public class Character {
             }
         }
 
-        if (! (foundAnimation == null)) {
+        if (!(foundAnimation == null)) {
             this.currentAnimation = foundAnimation;
         }
     }

@@ -49,8 +49,8 @@ public class Layer {
 
     public void draw(FXGraphics2D graphics) {
         for (Drawable drawable: this.drawables) {
-            //drawable.draw(graphics); //
-            this.threads.execute(() -> drawable.draw(graphics));
+            drawable.draw(graphics); //
+            //this.threads.execute(() -> drawable.draw(graphics));
         }
     }
 

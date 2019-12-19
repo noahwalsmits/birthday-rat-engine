@@ -36,6 +36,10 @@ public class Drawable {
         return screenArea;
     }
 
+    public void setOnDrawableUpdate(OnDrawableUpdate onDrawableUpdate) {
+
+    }
+
     public interface OnDrawableUpdate {
         void onUpdate(ScreenArea screenArea, long time);
     }

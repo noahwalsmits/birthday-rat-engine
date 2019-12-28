@@ -1,30 +1,31 @@
 package engine.visual.drawable;
 
 import engine.visual.screen.ScreenArea;
-import org.jfree.fx.FXGraphics2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
-import java.awt.image.BufferedImage;
+import java.net.URI;
 
 public class Drawable {
     private ScreenArea screenArea;
-    private BufferedImage image;
+    private Image image;
     private OnDrawableUpdate onDrawableUpdate;
     private int priority;
 
-    public Drawable(ScreenArea screenArea, BufferedImage image) {
+    public Drawable(ScreenArea screenArea, String imageUrl) {
         this.screenArea = screenArea;
-        this.image = image;
-        //this.image = image.getScaledInstance(this.screenArea.getWidth(), this.screenArea.getHeight(), Image.SCALE_DEFAULT);
-        //new BufferedImage(this.screenArea.getWidth(), this.screenArea.getHeight(), BufferedImage.TYPE_INT_RGB);
+        this.image = new Image(getClass().getResource(imageUrl).toString(),
+                (double) screenArea.getWidth(),
+                (double) screenArea.getHeight(),
+                false,
+                true);
+        //smooth = true, better quality resize
+        //smooth = false, faster resize
     }
 
-    public void draw(FXGraphics2D graphics) {
-        graphics.drawImage(this.image,
-                0,
-                this.image.getHeight(),
-                this.screenArea.getWidth(), //this.image.getWidth() * (this.screenArea.getWidth() / this.image.getWidth())
-                this.screenArea.getHeight(), //this.image.getHeight() * (this.screenArea.getHeight() / this.image.getHeight())
-                null);
+    public void draw(GraphicsContext graphics) {
+        //TODO resize
+        graphics.drawImage(this.image, this.screenArea.getX(), this.screenArea.getY());
     }
 
     public void update(long time) {

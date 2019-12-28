@@ -2,6 +2,7 @@ package engine.visual;
 
 import engine.visual.drawable.Drawable;
 import engine.visual.screen.ScreenSettings;
+import javafx.scene.canvas.GraphicsContext;
 import org.jfree.fx.FXGraphics2D;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.TreeSet;
 //TODO stop using singleton
 public class RenderManager {
     private static RenderManager instance;
-    private FXGraphics2D graphics;
+    private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
     //Set:
     //no duplicates
@@ -46,13 +47,12 @@ public class RenderManager {
      *
      * @param graphics
      */
-    protected void setGraphics(FXGraphics2D graphics) {
+    protected void setGraphics(GraphicsContext graphics) {
         this.graphics = graphics;
     }
 
     public void draw() {
-        graphics.setBackground(Color.BLACK);
-        graphics.clearRect(0, 0, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
+        graphics.clearRect(0.0, 0.0, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
         for (Drawable drawable : this.drawables) {
             drawable.draw(this.graphics);
         }

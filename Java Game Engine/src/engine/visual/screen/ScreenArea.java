@@ -17,10 +17,18 @@ public class ScreenArea {
         this.baseHeight = baseHeight;
     }
 
+    /**
+     * Calculates where the base X would be if it was resized to fit the current screen size
+     * @return The X coordinate resized to fit the current screen size
+     */
     public int getX() {
         return this.baseX * (ScreenSettings.screenWidth / ScreenSettings.baseWidth);
     }
 
+    /**
+     * Calculates where the base Y would be if it was resized to fit the current screen size
+     * @return The Y coordinate resized to fit the current screen size
+     */
     public int getY() {
         return this.baseY * (ScreenSettings.screenHeight / ScreenSettings.baseHeight);
     }

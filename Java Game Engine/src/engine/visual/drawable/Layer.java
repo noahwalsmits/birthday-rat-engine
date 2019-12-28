@@ -1,6 +1,7 @@
 package engine.visual.drawable;
 
 import engine.visual.animation.ConfigClass;
+import javafx.scene.canvas.GraphicsContext;
 import org.jfree.fx.FXGraphics2D;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class Layer {
         this(null, ConfigClass.DEFAULT_LAYER_PRIORITY);
     }
 
-    public void draw(FXGraphics2D graphics) {
+    public void draw(GraphicsContext graphics) {
         for (Drawable drawable : this.drawables) {
             drawable.draw(graphics); //
             //this.threads.execute(() -> drawable.draw(graphics));

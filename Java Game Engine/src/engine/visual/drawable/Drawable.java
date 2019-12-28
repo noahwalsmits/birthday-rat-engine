@@ -1,10 +1,9 @@
 package engine.visual.drawable;
 
+import engine.visual.RenderManager;
 import engine.visual.screen.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
-import java.net.URI;
 
 public class Drawable {
     private ScreenArea screenArea;
@@ -12,26 +11,57 @@ public class Drawable {
     private OnDrawableUpdate onDrawableUpdate;
     private int priority;
 
-    public Drawable(ScreenArea screenArea, String imageUrl) {
+    /**
+     * Creates a drawable, keep in mind that it will still need to be added to the render manager for it to be drawn
+     *
+     * @param screenArea The area on the screen the drawable should take up
+     * @param imagePath  The path to the image that should be drawn, should lead to an image file in the resources folder
+     * @param priority   The priority compared to other drawables, higher priority drawables get drawn on top of lower priority ones
+     */
+    public Drawable(String imagePath, ScreenArea screenArea, int priority) {
+        try {
+            this.image = new Image(getClass().getResource(imagePath).toString(),
+                    (double) screenArea.getWidth(),
+                    (double) screenArea.getHeight(),
+                    false,
+                    true); //true = better quality resize || false = faster resize
+        } catch (NullPointerException e) {
+            System.out.println("Drawable: Could not find image");
+            this.image = new Image(getClass().getResource("/images/engine/missing_image.png").toString(),
+                    (double) screenArea.getWidth(),
+                    (double) screenArea.getHeight(),
+                    false,
+                    true); //true = better quality resize || false = faster resize
+            e.printStackTrace();
+        }
         this.screenArea = screenArea;
-        this.image = new Image(getClass().getResource(imageUrl).toString(),
-                (double) screenArea.getWidth(),
-                (double) screenArea.getHeight(),
-                false,
-                true);
-        //smooth = true, better quality resize
-        //smooth = false, faster resize
+        this.priority = priority;
     }
 
+    /**
+     * Drawn the drawable on the screen
+     * @param graphics A graphics context to draw on
+     */
     public void draw(GraphicsContext graphics) {
-        //TODO resize
         graphics.drawImage(this.image, this.screenArea.getX(), this.screenArea.getY());
     }
 
+    /**
+     * Executes the code given to onDrawableUpdate
+     *
+     * @param time The amount of milliseconds gone by since the last update, not used by default
+     */
     public void update(long time) {
         if (this.onDrawableUpdate != null) {
             this.onDrawableUpdate.onUpdate(this.screenArea, time);
         }
+    }
+
+    /**
+     * Makes the drawable remove itself from the render manager
+     */
+    public void remove() {
+        RenderManager.getInstance().removeDrawable(this);
     }
 
     public ScreenArea getScreenArea() {
@@ -46,6 +76,9 @@ public class Drawable {
 
     }
 
+    /**
+     * Interface definition for a callback to be invoked when the drawable is updated
+     */
     public interface OnDrawableUpdate {
         void onUpdate(ScreenArea screenArea, long time);
     }

@@ -1,5 +1,6 @@
 package engine.visual;
 
+import engine.sound.AudioManager;
 import engine.visual.drawable.Drawable;
 import engine.visual.screen.ScreenArea;
 import engine.visual.screen.ScreenSettings;
@@ -10,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+//TODO seperate thread updating all drawables
 public class Game extends Application {
     private Canvas canvas;
 
@@ -31,7 +33,8 @@ public class Game extends Application {
     }
 
     public void init() {
-        RenderManager.getInstance().addDrawable(new Drawable(new ScreenArea(0, 0, 100, 100), "/images/testsheet.png"));
+        RenderManager.getInstance().addDrawable(new Drawable("/images/testsheet.png", new ScreenArea(0, 0, 100, 100), 10));
+        AudioManager.getInstance();
     }
 
     public void draw(GraphicsContext graphics) {

@@ -1,6 +1,5 @@
 package base;
 
-import engine.sound.AudioManager;
 import engine.visual.animation.SpriteSheet;
 
 import javax.imageio.ImageIO;
@@ -10,7 +9,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
 
         try {
             SpriteSheet spriteSheet = new SpriteSheet(ImageIO.read(new File("D:\\Persoonlijk\\Projecten\\Java Game Engine\\resources\\testsheet.png")), 80, 80);

@@ -48,6 +48,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
+birthday-rat-engine/out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

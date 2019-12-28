@@ -1,12 +1,11 @@
 package engine.visual.drawable;
 
 import engine.visual.animation.ConfigClass;
-import engine.visual.drawable.Layer;
+import javafx.scene.canvas.GraphicsContext;
 import org.jfree.fx.FXGraphics2D;
 
 /**
- * @deprecated
- * A layer that can be searched for by it's name, so that it can be found and disabled/enabled;
+ * @deprecated A layer that can be searched for by it's name, so that it can be found and disabled/enabled;
  */
 public class TrackedLayer extends Layer {
     private String name;
@@ -22,7 +21,7 @@ public class TrackedLayer extends Layer {
     }
 
     @Override
-    public void draw(FXGraphics2D graphics) {
+    public void draw(GraphicsContext graphics) {
         if (this.enabled) {
             super.draw(graphics);
         }

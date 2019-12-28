@@ -10,9 +10,8 @@ public class AudioManager {
 
 
     private AudioManager() {
-        System.out.println(getClass().getResource("Intermission.mp3"));
-        //this.musicPlayer = new MediaPlayer(new Media(getClass().getResource("Intermission.mp3").toExternalForm()));
-        //this.musicPlayer.play();
+        this.musicPlayer = new MediaPlayer(new Media(getClass().getResource("/sound/Intermission.mp3").toExternalForm()));
+        this.musicPlayer.play();
         //TODO play startup sound to create musicPlayer instance, that way it's no longer needed to check if the player is not null
     }
 
@@ -25,7 +24,7 @@ public class AudioManager {
             }
         }
         return instance;
-        //TODO maybe this doesn't need to be syncrhonized
+        //TODO maybe this doesn't need to be synchronized
     }
 
     public void playSong(String mediaSource, boolean displayName) {
@@ -58,6 +57,11 @@ public class AudioManager {
 
     public void playSound(String mediaSource) {
         this.playSound(mediaSource, 1.0, 1.0, 0.0, 0);
+    }
+
+    //Plays a sound from a sound pool TODO
+    public void playSoundPool(String soundPoolFolder, double volume, double rate, double balane, int priority) {
+
     }
 
 

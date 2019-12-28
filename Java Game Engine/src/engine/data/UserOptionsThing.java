@@ -22,5 +22,5 @@ public class UserOptionsThing {
     public void saveToFile() {
 
     }
-    
+
 }

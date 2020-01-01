@@ -7,9 +7,12 @@ import javafx.scene.media.MediaPlayer;
 public class AudioManager {
     private static AudioManager instance;
     private MediaPlayer musicPlayer;
+    double musicVolume;
+    double musicRate;
 
     private AudioManager() {
-
+        this.musicVolume = 1.0;
+        this.musicRate = 1.0;
     }
 
     public static AudioManager getInstance() {
@@ -24,23 +27,60 @@ public class AudioManager {
         //TODO maybe this doesn't need to be synchronized
     }
 
-    public void playSong(String mediaSource, boolean displayName) {
+    /**
+     * Plays a song, only a single song can be played at a time
+     *
+     * @param mediaSource The path to the song that should be played, should lead to an audio file in the resources folder
+     */
+    public void playSong(String mediaSource) {
+        try {
+            mediaSource = getClass().getResource(mediaSource).toString();
+        } catch (NullPointerException e) {
+            System.out.println("AudioManager: Could not find song");
+            e.printStackTrace();
+            return;
+        }
+
         if (this.musicPlayer != null) {
             this.musicPlayer.dispose();
         }
         this.musicPlayer = new MediaPlayer(new Media(mediaSource));
+        this.musicPlayer.setVolume(this.musicVolume);
         this.musicPlayer.play();
-
-        if (displayName) {
-            //TODO pop-up on screen with track name
-        }
     }
 
+    /**
+     * Stops the current song from playing, if a song is playing
+     */
     public void stopSong() {
         if (this.musicPlayer != null) {
             this.musicPlayer.stop();
             this.musicPlayer.dispose();
         }
+    }
+
+    /**
+     * Changes the volume of the music
+     *
+     * @param volume The volume, 1.0 is full volume and the default
+     */
+    public void setMusicVolume(double volume) {
+        if (this.musicPlayer != null) {
+            this.musicPlayer.setVolume(volume);
+        }
+        this.musicVolume = volume;
+    }
+
+    /**
+     * Changes the speed of the music
+     *
+     * @param rate The speed, 1.0 is default, can range from 0.0 to 8.0
+     */
+    public void setMusicRate(double rate) {
+        if (this.musicPlayer != null) {
+            this.musicPlayer.setRate(rate);
+        }
+        this.musicRate = rate;
     }
 
     /**
@@ -53,6 +93,14 @@ public class AudioManager {
      * @param priority    The priority that decides which clips still get played when there are too many, the default is 0
      */
     public void playSound(String mediaSource, double volume, double rate, double balance, int priority) {
+        try {
+            mediaSource = getClass().getResource(mediaSource).toString();
+        } catch (NullPointerException e) {
+            System.out.println("AudioManager: Could not find sound");
+            e.printStackTrace();
+            return;
+        }
+
         AudioClip clip = new AudioClip(mediaSource);
         clip.setVolume(volume); //default = 1.0
         clip.setRate(rate); //default = 1.0

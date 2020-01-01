@@ -7,12 +7,14 @@ import javafx.scene.media.MediaPlayer;
 public class AudioManager {
     private static AudioManager instance;
     private MediaPlayer musicPlayer;
-    double musicVolume;
-    double musicRate;
+    private double musicVolume;
+    private double musicRate;
+    private double musicBalance;
 
     private AudioManager() {
         this.musicVolume = 1.0;
         this.musicRate = 1.0;
+        this.musicBalance = 0.0;
     }
 
     public static AudioManager getInstance() {
@@ -32,7 +34,7 @@ public class AudioManager {
      *
      * @param mediaSource The path to the song that should be played, should lead to an audio file in the resources folder
      */
-    public void playSong(String mediaSource) {
+    public void playMusic(String mediaSource, boolean loop) {
         try {
             mediaSource = getClass().getResource(mediaSource).toString();
         } catch (NullPointerException e) {
@@ -45,14 +47,23 @@ public class AudioManager {
             this.musicPlayer.dispose();
         }
         this.musicPlayer = new MediaPlayer(new Media(mediaSource));
+        if (loop) {
+            this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        }
         this.musicPlayer.setVolume(this.musicVolume);
+        this.musicPlayer.setRate(this.musicRate);
+        this.musicPlayer.setBalance(this.musicBalance);
         this.musicPlayer.play();
+    }
+
+    public void playMusicPool(String musicPoolId, boolean loop) {
+        //TODO parse the json and loop random songs from it
     }
 
     /**
      * Stops the current song from playing, if a song is playing
      */
-    public void stopSong() {
+    public void stopMusic() {
         if (this.musicPlayer != null) {
             this.musicPlayer.stop();
             this.musicPlayer.dispose();
@@ -81,6 +92,18 @@ public class AudioManager {
             this.musicPlayer.setRate(rate);
         }
         this.musicRate = rate;
+    }
+
+    /**
+     * Changes the balance between the left and right volume
+     *
+     * @param balance The balance between the left and right volume, -1.0 is full volume for left, 1.0 is full volume for right, 0.0 is full volume for both
+     */
+    public void setMusicBalance(double balance) {
+        if (this.musicPlayer != null) {
+            this.musicPlayer.setBalance(balance);
+        }
+        this.musicBalance = balance;
     }
 
     /**

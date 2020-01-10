@@ -7,7 +7,7 @@ package engine.visual.screen;
 public class ScreenSettings {
     public static final int baseWidth = 700; //todo change
     public static final int baseHeight = 500; //todo change
-    public static int screenWidth = 800;
+    public static int screenWidth = 700;
     public static int screenHeight = 500;
     public static boolean firstStartup = true;
 

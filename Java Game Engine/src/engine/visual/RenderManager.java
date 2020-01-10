@@ -53,11 +53,11 @@ public class RenderManager {
      *
      * @param graphics
      */
-    protected void setGraphics(GraphicsContext graphics) {
+    void setGraphics(GraphicsContext graphics) {
         this.graphics = graphics;
     }
 
-    public void draw() {
+    void draw() {
         graphics.clearRect(0.0, 0.0, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
         for (Drawable drawable : this.drawables) {
             drawable.draw(this.graphics);
@@ -69,7 +69,7 @@ public class RenderManager {
      *
      * @param time
      */
-    public void asyncUpdate(double time) {
+    void asyncUpdate(double time) {
         for (Drawable drawable : this.drawables) {
             this.updateExecuter.execute(new Runnable() {
                 @Override
@@ -109,7 +109,7 @@ public class RenderManager {
         };
     }
 
-    public void stop() {
+    void stop() {
         this.updateExecuter.shutdown();
     }
 

@@ -11,7 +11,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-//TODO seperate thread updating all drawables
 public class Game extends Application {
     private Canvas canvas;
     private GameLogic gameLogic;

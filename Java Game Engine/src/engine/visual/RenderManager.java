@@ -58,6 +58,10 @@ public class RenderManager {
         }
     }
 
+    public void AsyncUpdate(long time) {
+
+    }
+
     /**
      * Adds a new Drawable to be rendered. The Drawable will not be added if a Drawable with the same hash code already exists in the RenderManager.
      *

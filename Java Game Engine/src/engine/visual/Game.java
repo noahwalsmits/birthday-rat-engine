@@ -1,9 +1,11 @@
 package engine.visual;
 
+import engine.GameLogic;
 import engine.sound.AudioManager;
 import engine.visual.drawable.Drawable;
 import engine.visual.screen.ScreenArea;
 import engine.visual.screen.ScreenSettings;
+import game.DemonstrationGameLogic;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 //TODO seperate thread updating all drawables
 public class Game extends Application {
     private Canvas canvas;
+    private GameLogic gameLogic;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,8 +36,8 @@ public class Game extends Application {
     }
 
     public void init() {
-        RenderManager.getInstance().addDrawable(new Drawable("/images/testsheet.png", new ScreenArea(0, 0, 100, 100), 10));
-        AudioManager.getInstance();
+        this.gameLogic = new DemonstrationGameLogic();
+        this.gameLogic.init();
     }
 
     public void draw(GraphicsContext graphics) {

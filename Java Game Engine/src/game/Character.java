@@ -1,4 +1,4 @@
-package base;
+package game;
 
 import engine.visual.animation.AnimationSet;
 import engine.visual.animation.ErrorResources;

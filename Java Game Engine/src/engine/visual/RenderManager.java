@@ -3,18 +3,19 @@ package engine.visual;
 import engine.visual.drawable.Drawable;
 import engine.visual.screen.ScreenSettings;
 import javafx.scene.canvas.GraphicsContext;
-import org.jfree.fx.FXGraphics2D;
 
-import java.awt.*;
 import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 //TODO stop using singleton
 public class RenderManager {
     private static RenderManager instance;
     private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
+    private ExecutorService updateExecuter; //shut down eventually
     //Set:
     //no duplicates
 
@@ -29,15 +30,20 @@ public class RenderManager {
 
     private RenderManager() {
         this.drawables = new TreeSet<>(this.drawableComparator());
+        this.updateExecuter = Executors.newCachedThreadPool();
     }
 
     public static RenderManager getInstance() {
+//        if (instance == null) {
+//            synchronized (RenderManager.class) {
+//                if (instance == null) {
+//                    instance = new RenderManager();
+//                }
+//            }
+//        }
+//        return instance;
         if (instance == null) {
-            synchronized (RenderManager.class) {
-                if (instance == null) {
-                    instance = new RenderManager();
-                }
-            }
+            instance = new RenderManager();
         }
         return instance;
     }
@@ -58,8 +64,20 @@ public class RenderManager {
         }
     }
 
-    public void AsyncUpdate(long time) {
-
+    /**
+     * Updates every drawable using a threadpool
+     *
+     * @param time
+     */
+    public void asyncUpdate(double time) {
+        for (Drawable drawable : this.drawables) {
+            this.updateExecuter.execute(new Runnable() {
+                @Override
+                public void run() {
+                    drawable.update(time);
+                }
+            });
+        }
     }
 
     /**
@@ -89,6 +107,10 @@ public class RenderManager {
                 return 0; //If the same hash code
             }
         };
+    }
+
+    public void stop() {
+        this.updateExecuter.shutdown();
     }
 
     @Override

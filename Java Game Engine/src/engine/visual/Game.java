@@ -1,11 +1,9 @@
 package engine.visual;
 
 import engine.GameLogic;
-import engine.sound.AudioManager;
-import engine.visual.drawable.Drawable;
-import engine.visual.screen.ScreenArea;
 import engine.visual.screen.ScreenSettings;
 import game.DemonstrationGameLogic;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -32,7 +30,19 @@ public class Game extends Application {
         primaryStage.setTitle("Game");
         primaryStage.show();
 
-        draw(gc);
+        new AnimationTimer() {
+            long last = -1;
+
+            @Override
+            public void handle(long now) {
+                if (last == -1) {
+                    last = now;
+                }
+                update((now - last) / 1000000000.0);
+                last = now;
+                draw(gc);
+            }
+        }.start();
     }
 
     public void init() {
@@ -44,4 +54,14 @@ public class Game extends Application {
         RenderManager.getInstance().draw();
     }
 
+    public void update(double time) {
+        RenderManager.getInstance().asyncUpdate(time);
+        this.gameLogic.update(time); //todo make asynchronous
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        RenderManager.getInstance().stop();
+    }
 }

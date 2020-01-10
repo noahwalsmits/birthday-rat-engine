@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 public class Drawable {
     private ScreenArea screenArea;
     private Image image;
-    private OnDrawableUpdate onDrawableUpdate;
     private int priority;
+    private OnDrawableUpdate onDrawableUpdate;
 
     /**
      * Creates a drawable, keep in mind that it will still need to be added to the render manager for it to be drawn
@@ -51,7 +51,7 @@ public class Drawable {
      *
      * @param time The amount of milliseconds gone by since the last update, not used by default
      */
-    public void update(long time) {
+    public void update(double time) {
         if (this.onDrawableUpdate != null) {
             this.onDrawableUpdate.onUpdate(this.screenArea, time);
         }
@@ -73,14 +73,14 @@ public class Drawable {
     }
 
     public void setOnDrawableUpdate(OnDrawableUpdate onDrawableUpdate) {
-
+        this.onDrawableUpdate = onDrawableUpdate;
     }
 
     /**
      * Interface definition for a callback to be invoked when the drawable is updated
      */
     public interface OnDrawableUpdate {
-        void onUpdate(ScreenArea screenArea, long time);
+        void onUpdate(ScreenArea screenArea, double time);
     }
 
     @Override

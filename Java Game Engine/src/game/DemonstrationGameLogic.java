@@ -23,7 +23,7 @@ public class DemonstrationGameLogic extends GameLogic {
         });
         RenderManager.getInstance().addDrawable(drawable);
 
-        AudioManager.getInstance().playMusic("/sound/Intermission.mp3", true);
+        AudioManager.getInstance().playMusic("/sound/Intermission.mp3", false);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package engine.visual.animation;
+package unused.animation;
 
 import javax.imageio.ImageIO;
 import java.io.File;

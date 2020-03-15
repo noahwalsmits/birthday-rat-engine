@@ -1,4 +1,4 @@
-package engine.data;
+package engine.data.options;
 
 public class UserOptionSlider<E extends Number> extends UserOption {
     private E value;

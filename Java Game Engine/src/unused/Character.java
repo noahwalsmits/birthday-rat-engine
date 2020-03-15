@@ -1,7 +1,7 @@
-package game;
+package unused;
 
-import engine.visual.animation.AnimationSet;
-import engine.visual.animation.ErrorResources;
+import unused.animation.AnimationSet;
+import unused.animation.ErrorResources;
 
 import java.util.List;
 

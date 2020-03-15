@@ -110,7 +110,7 @@ public class RenderManager {
     }
 
     void stop() {
-        this.updateExecuter.shutdown();
+        this.updateExecuter.shutdownNow();
     }
 
     @Override

@@ -5,9 +5,12 @@ import engine.visual.screen.ScreenSettings;
 import game.DemonstrationGameLogic;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -24,8 +27,16 @@ public class Game extends Application {
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(this.canvas);
 
-        primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(mainPane, ScreenSettings.screenWidth, ScreenSettings.screenHeight));
+        Scene scene = new Scene(mainPane, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCode());
+            }
+        });
+
+                primaryStage.setResizable(false);
+        primaryStage.setScene(scene);
         primaryStage.setTitle("Game");
         primaryStage.show();
 

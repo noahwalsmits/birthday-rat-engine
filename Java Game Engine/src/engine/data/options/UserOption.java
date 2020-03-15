@@ -1,4 +1,4 @@
-package engine.data;
+package engine.data.options;
 
 import java.util.HashMap;
 import java.util.Map;

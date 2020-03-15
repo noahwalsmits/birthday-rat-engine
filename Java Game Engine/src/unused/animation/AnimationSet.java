@@ -1,4 +1,4 @@
-package engine.visual.animation;
+package unused.animation;
 
 import java.awt.image.BufferedImage;
 

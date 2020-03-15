@@ -1,4 +1,4 @@
-package engine.data;
+package engine.data.options;
 
 public class UserOptionToggle extends UserOption {
     private boolean enabled;

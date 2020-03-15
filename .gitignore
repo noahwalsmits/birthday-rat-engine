@@ -47,8 +47,7 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
-birthday-rat-engine/out/
+Java Game Engine/out/*
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

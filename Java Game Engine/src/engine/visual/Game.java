@@ -3,6 +3,7 @@ package engine.visual;
 import engine.GameLogic;
 import engine.visual.screen.ScreenSettings;
 import game.DemonstrationGameLogic;
+import game.GameInfo;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -35,9 +36,9 @@ public class Game extends Application {
             }
         });
 
-                primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Game");
+        primaryStage.setTitle(GameInfo.WINDOW_TITLE);
         primaryStage.show();
 
         new AnimationTimer() {

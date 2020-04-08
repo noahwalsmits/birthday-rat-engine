@@ -1,8 +1,8 @@
 package engine.visual;
 
-import engine.GameLogic;
+import engine.GameState;
 import engine.visual.screen.ScreenSettings;
-import game.DemonstrationGameLogic;
+import game.DemoState;
 import game.GameInfo;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -10,14 +10,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Game extends Application {
     private Canvas canvas;
-    private GameLogic gameLogic;
+    private GameState gameState;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,7 +31,13 @@ public class Game extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode());
+                gameState.keyPressed(event);
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                gameState.keyReleased(event);
             }
         });
 
@@ -56,18 +61,28 @@ public class Game extends Application {
         }.start();
     }
 
+    @Override
     public void init() {
-        this.gameLogic = new DemonstrationGameLogic();
-        this.gameLogic.init();
+        //this.gameLogic = new DemonstrationGameLogic();
+        //this.gameLogic.init();
+        //TODO demo state
+        this.gameState = new DemoState(this);
+        this.gameState.init();
+    }
+
+    public void update(double time) {
+        RenderManager.getInstance().asyncUpdate(time);
+        //this.gameLogic.update(time); //todo make asynchronous
+        this.gameState.update(time);
     }
 
     public void draw(GraphicsContext graphics) {
         RenderManager.getInstance().draw();
     }
 
-    public void update(double time) {
-        RenderManager.getInstance().asyncUpdate(time);
-        this.gameLogic.update(time); //todo make asynchronous
+    public void stateChanged(GameState newState) {
+        this.gameState = newState;
+        newState.init();
     }
 
     @Override

@@ -68,6 +68,10 @@ public class Drawable {
         return screenArea;
     }
 
+    public void setScreenArea(ScreenArea screenArea) {
+        this.screenArea = screenArea;
+    }
+
     public int getPriority() {
         return priority;
     }

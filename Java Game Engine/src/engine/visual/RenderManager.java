@@ -93,6 +93,10 @@ public class RenderManager {
         this.drawables.remove(drawable);
     }
 
+    public void clearDrawables() {
+        this.drawables.clear();
+    }
+
     private Comparator<Drawable> drawableComparator() {
         return new Comparator<Drawable>() { //TODO
             @Override

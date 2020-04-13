@@ -15,11 +15,16 @@ public class DemoState extends GameState {
     }
 
     @Override
-    public void init() {
+    public void enter() {
         Drawable drawable = new Drawable("/images/testsheet.png", new ScreenArea(100, 100, 700, 500), 10);
         RenderManager.getInstance().addDrawable(drawable);
 
         AudioManager.getInstance().playMusic("/sound/Intermission.mp3", false);
+
+    }
+
+    @Override
+    public void exit() {
 
     }
 

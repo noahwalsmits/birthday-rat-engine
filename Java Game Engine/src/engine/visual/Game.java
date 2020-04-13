@@ -67,7 +67,7 @@ public class Game extends Application {
         //this.gameLogic.init();
         //TODO demo state
         this.gameState = new DemoState(this);
-        this.gameState.init();
+        this.gameState.enter();
     }
 
     public void update(double time) {
@@ -82,12 +82,13 @@ public class Game extends Application {
 
     public void stateChanged(GameState newState) {
         this.gameState = newState;
-        newState.init();
+        newState.enter();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
         RenderManager.getInstance().stop();
+        this.gameState.exit();
     }
 }

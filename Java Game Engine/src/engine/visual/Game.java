@@ -4,6 +4,7 @@ import engine.GameState;
 import engine.visual.screen.ScreenSettings;
 import game.DemoState;
 import game.GameInfo;
+import game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -66,7 +67,7 @@ public class Game extends Application {
         //this.gameLogic = new DemonstrationGameLogic();
         //this.gameLogic.init();
         //TODO demo state
-        this.gameState = new DemoState(this);
+        this.gameState = new MainMenuState(this); //TODO have the starting state be changed somewhere else
         this.gameState.enter();
     }
 

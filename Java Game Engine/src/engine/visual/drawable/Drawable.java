@@ -9,6 +9,7 @@ public class Drawable {
     private ScreenArea screenArea;
     private Image image;
     private int priority;
+    private String imagePath;
     private OnDrawableUpdate onDrawableUpdate;
 
     /**
@@ -19,23 +20,10 @@ public class Drawable {
      * @param priority   The priority compared to other drawables, higher priority drawables get drawn on top of lower priority ones
      */
     public Drawable(String imagePath, ScreenArea screenArea, int priority) {
-        try {
-            this.image = new Image(getClass().getResource(imagePath).toString(),
-                    (double) screenArea.getWidth(),
-                    (double) screenArea.getHeight(),
-                    false,
-                    true); //true = better quality resize || false = faster resize
-        } catch (NullPointerException e) {
-            System.out.println("Drawable: Could not find image");
-            this.image = new Image(getClass().getResource("/images/engine/missing_image.png").toString(),
-                    (double) screenArea.getWidth(),
-                    (double) screenArea.getHeight(),
-                    false,
-                    true); //true = better quality resize || false = faster resize
-            e.printStackTrace();
-        }
+        this.image = this.generateImage(imagePath, screenArea);
         this.screenArea = screenArea;
         this.priority = priority;
+        this.imagePath = imagePath;
     }
 
     /**
@@ -70,6 +58,8 @@ public class Drawable {
 
     public void setScreenArea(ScreenArea screenArea) {
         this.screenArea = screenArea;
+        //TODO check if image size actually changed and not just the position
+        this.image = this.generateImage(this.imagePath, screenArea);
     }
 
     public int getPriority() {
@@ -95,5 +85,25 @@ public class Drawable {
                 ", onDrawableUpdate=" + (onDrawableUpdate != null) +
                 ", priority=" + priority +
                 '}';
+    }
+
+    private Image generateImage(String imagePath, ScreenArea screenArea) {
+        Image generatedImage;
+        try {
+            generatedImage = new Image(getClass().getResource(imagePath).toString(),
+                    (double) screenArea.getWidth(),
+                    (double) screenArea.getHeight(),
+                    false,
+                    true); //true = better quality resize || false = faster resize
+        } catch (NullPointerException e) {
+            System.out.println("Drawable: Could not find image");
+            generatedImage = new Image(getClass().getResource("/images/engine/missing_image.png").toString(),
+                    (double) screenArea.getWidth(),
+                    (double) screenArea.getHeight(),
+                    false,
+                    true); //true = better quality resize || false = faster resize
+            e.printStackTrace();
+        }
+        return generatedImage;
     }
 }

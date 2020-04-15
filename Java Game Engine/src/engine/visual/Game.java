@@ -2,7 +2,6 @@ package engine.visual;
 
 import engine.GameState;
 import engine.visual.screen.ScreenSettings;
-import game.DemoState;
 import game.GameInfo;
 import game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;

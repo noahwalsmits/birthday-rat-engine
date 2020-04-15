@@ -27,6 +27,8 @@ public class MainMenuState extends GameState {
         this.dExit = new Drawable("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
         this.dHighlight = new Drawable("/images/demo/highlight.png", new ScreenArea(0, 0, 300, 300), 20);
 
+        this.updateHighlight();
+
         RenderManager.getInstance().addDrawable(this.dStart);
         RenderManager.getInstance().addDrawable(this.dOptions);
         RenderManager.getInstance().addDrawable(this.dExit);
@@ -105,4 +107,3 @@ public class MainMenuState extends GameState {
 }
 
 //TODO allow drawables to be added but not be drawn when screenarea is null
-//TODO have changing screenarea width/height also resize image

@@ -21,14 +21,14 @@ public class DrawableImage extends Drawable {
             this.image = this.generateImage(imagePath, screenArea);
         }
         this.imagePath = imagePath;
-        //TODO allow drawables to be added but not be drawn when screenarea is null
     }
 
     /**
-     * Drawn the drawable on the screen
+     * Draw the image on the screen
      *
-     * @param graphics A graphics context to draw on
+     * @param graphics A graphics context to draw on, is provided by RenderManager
      */
+    @Override
     public void draw(GraphicsContext graphics) {
         graphics.drawImage(this.image, super.getScreenArea().getX(), super.getScreenArea().getY());
     }
@@ -37,7 +37,7 @@ public class DrawableImage extends Drawable {
      * Changes the ScreenArea and generates a new image. Use this method to change the size of the image.
      * For moving the image it faster to move the ScreenArea the Drawable was already using.
      *
-     * @param screenArea
+     * @param screenArea The new ScreenArea
      */
     @Override
     public void setScreenArea(ScreenArea screenArea) {

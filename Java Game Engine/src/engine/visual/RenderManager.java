@@ -8,38 +8,18 @@ import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-//TODO stop using singleton
 public class RenderManager {
     private static RenderManager instance;
     private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
 
     private static String TAG = "RenderManager";
-    //Set:
-    //no duplicates
-
-    //(SortedSet) Treeset:
-    //https://docs.oracle.com/javase/7/docs/api/java/util/TreeSet.html
-    //No duplicates
-    //Sorting
-    //This implementation provides guaranteed log(n) time cost for the basic operations (add, remove and contains).
-
-    //List:
-    //Sorting
 
     private RenderManager() {
         this.drawables = new TreeSet<>(this.drawableComparator());
     }
 
     public static RenderManager getInstance() {
-//        if (instance == null) {
-//            synchronized (RenderManager.class) {
-//                if (instance == null) {
-//                    instance = new RenderManager();
-//                }
-//            }
-//        }
-//        return instance;
         if (instance == null) {
             instance = new RenderManager();
         }
@@ -64,6 +44,7 @@ public class RenderManager {
 
     /**
      * Adds a new Drawable to be rendered. The Drawable will not be added if a Drawable with the same hash code already exists in the RenderManager.
+     * Or if the Drawable has no ScreenArea.
      *
      * @param drawable
      */
@@ -78,6 +59,9 @@ public class RenderManager {
         this.drawables.remove(drawable);
     }
 
+    /**
+     * Removes all drawables from the RenderManager.
+     */
     public void clearDrawables() {
         this.drawables.clear();
     }
@@ -102,10 +86,4 @@ public class RenderManager {
 
     }
 
-    @Override
-    public String toString() {
-        return "RenderManager{" +
-                "drawables=" + drawables +
-                '}';
-    }
 }

@@ -1,5 +1,6 @@
 package engine.visual.drawable;
 
+import com.sun.istack.internal.Nullable;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -12,11 +13,15 @@ public class TextInfo {
     private Color strokeColor;
     private double lineWidth;
 
-    public TextInfo(Font font, Color fillColor, Color strokeColor, double lineWidth) {
+    public TextInfo(Font font, @Nullable Color fillColor, @Nullable Color strokeColor, double lineWidth) {
         this.font = font;
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
         this.lineWidth = lineWidth;
+    }
+
+    public TextInfo(Font font, @Nullable Color fillColor, @Nullable Color strokeColor) {
+        this(font, fillColor, strokeColor, 1.0);
     }
 
     public Font getFont() {
@@ -25,6 +30,10 @@ public class TextInfo {
 
     public void setFont(Font font) {
         this.font = font;
+    }
+
+    public void setFontSize(double size) {
+        this.font = new Font(this.font.getName(), size); //TODO test
     }
 
     public Color getFillColor() {

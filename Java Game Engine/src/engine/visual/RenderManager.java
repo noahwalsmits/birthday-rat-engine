@@ -49,10 +49,11 @@ public class RenderManager {
      * @param drawable
      */
     public void addDrawable(Drawable drawable) {
-        if (drawable.getScreenArea() != null) {
-            this.drawables.add(drawable);
+        if (drawable.getScreenArea() == null) {
+            System.out.println(TAG + " warning: drawable had null ScreenArea and was not added");
+            return;
         }
-        System.out.println(TAG + " warning: drawable had null ScreenArea and was not added");
+        this.drawables.add(drawable);
     }
 
     public void removeDrawable(Drawable drawable) {

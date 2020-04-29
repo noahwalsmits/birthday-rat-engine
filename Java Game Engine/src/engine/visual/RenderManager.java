@@ -7,15 +7,12 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 //TODO stop using singleton
 public class RenderManager {
     private static RenderManager instance;
     private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
-    private ExecutorService updateExecuter; //shut down eventually
 
     private static String TAG = "RenderManager";
     //Set:
@@ -32,7 +29,6 @@ public class RenderManager {
 
     private RenderManager() {
         this.drawables = new TreeSet<>(this.drawableComparator());
-        this.updateExecuter = Executors.newCachedThreadPool();
     }
 
     public static RenderManager getInstance() {
@@ -63,22 +59,6 @@ public class RenderManager {
         graphics.clearRect(0.0, 0.0, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
         for (Drawable drawable : this.drawables) {
             drawable.draw(this.graphics);
-        }
-    }
-
-    /**
-     * Updates every drawable using a threadpool
-     *
-     * @param time
-     */
-    void asyncUpdate(double time) {
-        for (Drawable drawable : this.drawables) {
-            this.updateExecuter.execute(new Runnable() {
-                @Override
-                public void run() {
-                    drawable.update(time);
-                }
-            });
         }
     }
 
@@ -119,7 +99,7 @@ public class RenderManager {
     }
 
     void stop() {
-        this.updateExecuter.shutdownNow();
+
     }
 
     @Override

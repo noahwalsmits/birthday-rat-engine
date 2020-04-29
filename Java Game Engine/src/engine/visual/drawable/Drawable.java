@@ -3,110 +3,36 @@ package engine.visual.drawable;
 import engine.visual.RenderManager;
 import engine.visual.screen.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-public class Drawable {
+abstract public class Drawable {
     private ScreenArea screenArea;
-    private Image image;
     private int priority;
-    private String imagePath;
-    private OnDrawableUpdate onDrawableUpdate;
 
-    /**
-     * Creates a drawable, keep in mind that it will still need to be added to the render manager for it to be drawn
-     *
-     * @param screenArea The area on the screen the drawable should take up
-     * @param imagePath  The path to the image that should be drawn, should lead to an image file in the resources folder
-     * @param priority   The priority compared to other drawables, higher priority drawables get drawn on top of lower priority ones
-     */
-    public Drawable(String imagePath, ScreenArea screenArea, int priority) {
-        if (screenArea != null) {
-            this.image = this.generateImage(imagePath, screenArea);
-            this.screenArea = screenArea;
-        }
+    public Drawable(ScreenArea screenArea, int priority) {
+        this.screenArea = screenArea;
         this.priority = priority;
-        this.imagePath = imagePath;
-        //TODO allow drawables to be added but not be drawn when screenarea is null
     }
 
     /**
-     * Drawn the drawable on the screen
-     * @param graphics A graphics context to draw on
-     */
-    public void draw(GraphicsContext graphics) {
-        graphics.drawImage(this.image, this.screenArea.getX(), this.screenArea.getY());
-    }
-
-    /**
-     * Executes the code given to onDrawableUpdate
+     * Draws the drawable on the screen. The RenderManager executes this every frame.
      *
-     * @param time The amount of milliseconds gone by since the last update, not used by default
+     * @param graphics A graphics context to draw on, is provided by RenderManager
      */
-    public void update(double time) {
-        if (this.onDrawableUpdate != null) {
-            this.onDrawableUpdate.onUpdate(this.screenArea, time);
-        }
-    }
+    abstract public void draw(GraphicsContext graphics);
 
-    /**
-     * Makes the drawable remove itself from the render manager
-     */
     public void remove() {
         RenderManager.getInstance().removeDrawable(this);
     }
 
     public ScreenArea getScreenArea() {
-        return screenArea;
+        return this.screenArea;
     }
 
     public void setScreenArea(ScreenArea screenArea) {
         this.screenArea = screenArea;
-        //TODO check if image size actually changed and not just the position
-        this.image = this.generateImage(this.imagePath, screenArea);
     }
 
     public int getPriority() {
-        return priority;
-    }
-
-    public void setOnDrawableUpdate(OnDrawableUpdate onDrawableUpdate) {
-        this.onDrawableUpdate = onDrawableUpdate;
-    }
-
-    /**
-     * Interface definition for a callback to be invoked when the drawable is updated
-     */
-    public interface OnDrawableUpdate {
-        void onUpdate(ScreenArea screenArea, double time);
-    }
-
-    @Override
-    public String toString() {
-        return "Drawable{" +
-                "screenArea=" + screenArea +
-                ", image=" + image +
-                ", onDrawableUpdate=" + (onDrawableUpdate != null) +
-                ", priority=" + priority +
-                '}';
-    }
-
-    private Image generateImage(String imagePath, ScreenArea screenArea) {
-        Image generatedImage;
-        try {
-            generatedImage = new Image(getClass().getResource(imagePath).toString(),
-                    (double) screenArea.getWidth(),
-                    (double) screenArea.getHeight(),
-                    false,
-                    true); //true = better quality resize || false = faster resize
-        } catch (NullPointerException e) {
-            System.out.println("Drawable: Could not find image");
-            generatedImage = new Image(getClass().getResource("/images/engine/missing_image.png").toString(),
-                    (double) screenArea.getWidth(),
-                    (double) screenArea.getHeight(),
-                    false,
-                    true); //true = better quality resize || false = faster resize
-            e.printStackTrace();
-        }
-        return generatedImage;
+        return this.priority;
     }
 }

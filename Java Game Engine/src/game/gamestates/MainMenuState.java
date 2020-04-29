@@ -1,19 +1,18 @@
 package game.gamestates;
 
 import engine.GameState;
-import engine.Keybinds;
 import engine.sound.AudioManager;
 import engine.visual.Game;
 import engine.visual.RenderManager;
-import engine.visual.drawable.Drawable;
+import engine.visual.drawable.DrawableImage;
 import engine.visual.screen.ScreenArea;
 import javafx.scene.input.KeyEvent;
 
 public class MainMenuState extends GameState {
-    private Drawable dStart;
-    private Drawable dOptions;
-    private Drawable dExit;
-    private Drawable dHighlight;
+    private DrawableImage dStart;
+    private DrawableImage dOptions;
+    private DrawableImage dExit;
+    private DrawableImage dHighlight;
     private int buttonIndex;
 
     public MainMenuState(Game game) {
@@ -23,10 +22,10 @@ public class MainMenuState extends GameState {
 
     @Override
     public void enter() {
-        this.dStart = new Drawable("/images/demo/startgame.png", new ScreenArea(1600, 100, 300, 100), 10);
-        this.dOptions = new Drawable("/images/demo/options.png", new ScreenArea(1600, 300, 300, 100), 10);
-        this.dExit = new Drawable("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
-        this.dHighlight = new Drawable("/images/demo/highlight.png", null, 20);
+        this.dStart = new DrawableImage("/images/demo/startgame.png", new ScreenArea(1600, 100, 300, 100), 10);
+        this.dOptions = new DrawableImage("/images/demo/options.png", new ScreenArea(1600, 300, 300, 100), 10);
+        this.dExit = new DrawableImage("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
+        this.dHighlight = new DrawableImage("/images/demo/highlight.png", null, 20);
 
         this.updateHighlight();
 
@@ -35,7 +34,7 @@ public class MainMenuState extends GameState {
         RenderManager.getInstance().addDrawable(this.dExit);
         RenderManager.getInstance().addDrawable(this.dHighlight);
 
-        Drawable background = new Drawable("/images/demo/background.png", new ScreenArea(0, 0, 1920, 1080), 0);
+        DrawableImage background = new DrawableImage("/images/demo/background.png", new ScreenArea(0, 0, 1920, 1080), 0);
         RenderManager.getInstance().addDrawable(background);
     }
 

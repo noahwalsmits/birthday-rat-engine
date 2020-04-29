@@ -71,6 +71,11 @@ public class Game extends Application {
     }
 
     public void update(double time) {
+        //todo fps counter
+        //double fps = 1 / time;
+        //System.out.println(fps);
+        //
+
         RenderManager.getInstance().asyncUpdate(time);
         //this.gameLogic.update(time); //todo make asynchronous
         this.gameState.update(time);

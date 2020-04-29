@@ -20,10 +20,13 @@ public class Drawable {
      * @param priority   The priority compared to other drawables, higher priority drawables get drawn on top of lower priority ones
      */
     public Drawable(String imagePath, ScreenArea screenArea, int priority) {
-        this.image = this.generateImage(imagePath, screenArea);
-        this.screenArea = screenArea;
+        if (screenArea != null) {
+            this.image = this.generateImage(imagePath, screenArea);
+            this.screenArea = screenArea;
+        }
         this.priority = priority;
         this.imagePath = imagePath;
+        //TODO allow drawables to be added but not be drawn when screenarea is null
     }
 
     /**

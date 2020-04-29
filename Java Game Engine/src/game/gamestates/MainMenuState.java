@@ -1,6 +1,7 @@
 package game.gamestates;
 
 import engine.GameState;
+import engine.Keybinds;
 import engine.sound.AudioManager;
 import engine.visual.Game;
 import engine.visual.RenderManager;
@@ -25,7 +26,7 @@ public class MainMenuState extends GameState {
         this.dStart = new Drawable("/images/demo/startgame.png", new ScreenArea(1600, 100, 300, 100), 10);
         this.dOptions = new Drawable("/images/demo/options.png", new ScreenArea(1600, 300, 300, 100), 10);
         this.dExit = new Drawable("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
-        this.dHighlight = new Drawable("/images/demo/highlight.png", new ScreenArea(0, 0, 300, 300), 20);
+        this.dHighlight = new Drawable("/images/demo/highlight.png", null, 20);
 
         this.updateHighlight();
 
@@ -105,5 +106,3 @@ public class MainMenuState extends GameState {
         }
     }
 }
-
-//TODO allow drawables to be added but not be drawn when screenarea is null

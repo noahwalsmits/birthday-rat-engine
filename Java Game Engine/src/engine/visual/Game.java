@@ -2,8 +2,8 @@ package engine.visual;
 
 import engine.GameState;
 import engine.visual.screen.ScreenSettings;
-import game.DemoState;
 import game.GameInfo;
+import game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -66,11 +66,16 @@ public class Game extends Application {
         //this.gameLogic = new DemonstrationGameLogic();
         //this.gameLogic.init();
         //TODO demo state
-        this.gameState = new DemoState(this);
+        this.gameState = new MainMenuState(this); //TODO have the starting state be changed somewhere else
         this.gameState.enter();
     }
 
     public void update(double time) {
+        //todo fps counter
+        //double fps = 1 / time;
+        //System.out.println(fps);
+        //
+
         RenderManager.getInstance().asyncUpdate(time);
         //this.gameLogic.update(time); //todo make asynchronous
         this.gameState.update(time);

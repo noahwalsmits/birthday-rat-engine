@@ -16,6 +16,8 @@ public class RenderManager {
     private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
     private ExecutorService updateExecuter; //shut down eventually
+
+    private static String TAG = "RenderManager";
     //Set:
     //no duplicates
 
@@ -86,11 +88,18 @@ public class RenderManager {
      * @param drawable
      */
     public void addDrawable(Drawable drawable) {
-        this.drawables.add(drawable);
+        if (drawable.getScreenArea() != null) {
+            this.drawables.add(drawable);
+        }
+        System.out.println(TAG + " warning: drawable had null ScreenArea and was not added");
     }
 
     public void removeDrawable(Drawable drawable) {
         this.drawables.remove(drawable);
+    }
+
+    public void clearDrawables() {
+        this.drawables.clear();
     }
 
     private Comparator<Drawable> drawableComparator() {

@@ -23,8 +23,8 @@ public class ScreenArea {
      *
      * @return The X coordinate resized to fit the current screen size
      */
-    public int getX() {
-        return this.baseX * (ScreenSettings.screenWidth / ScreenSettings.baseWidth);
+    public double getX() {
+        return this.baseX * ((double) ScreenSettings.screenWidth / ScreenSettings.baseWidth);
     }
 
     /**
@@ -32,8 +32,8 @@ public class ScreenArea {
      *
      * @return The Y coordinate resized to fit the current screen size
      */
-    public int getY() {
-        return this.baseY * (ScreenSettings.screenHeight / ScreenSettings.baseHeight);
+    public double getY() {
+        return this.baseY * ((double) ScreenSettings.screenHeight / ScreenSettings.baseHeight);
     }
 
     /**
@@ -41,15 +41,15 @@ public class ScreenArea {
      *
      * @return The width resized to fit the current screen size
      */
-    public int getWidth() {
-        return this.baseWidth * (ScreenSettings.screenWidth / ScreenSettings.baseWidth);
+    public double getWidth() {
+        return this.baseWidth * ((double) ScreenSettings.screenWidth / ScreenSettings.baseWidth);
     }
 
     /**
      * @return The height resized to fit the current screen size
      */
-    public int getHeight() {
-        return this.baseHeight * (ScreenSettings.screenHeight / ScreenSettings.baseHeight);
+    public double getHeight() {
+        return this.baseHeight * ((double) ScreenSettings.screenHeight / ScreenSettings.baseHeight);
     }
 
     /**

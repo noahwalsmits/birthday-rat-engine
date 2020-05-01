@@ -8,9 +8,11 @@ import engine.visual.drawable.DrawableImage;
 import engine.visual.drawable.DrawableText;
 import engine.visual.drawable.TextInfo;
 import engine.visual.screen.ScreenArea;
+import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class MainMenuState extends GameState {
     private DrawableImage dStart;
@@ -41,12 +43,14 @@ public class MainMenuState extends GameState {
         DrawableImage background = new DrawableImage("/images/demo/background.png", new ScreenArea(0, 0, 1920, 1080), 0);
         RenderManager.getInstance().addDrawable(background);
 
-        TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
+        TextInfo textInfo = new TextInfo(new Font("calibri", 20.0),
+                TextAlignment.LEFT,
+                VPos.BASELINE,
                 Color.WHITE,
                 Color.BLACK,
                 0.3);
 
-        DrawableText dText = new DrawableText("this is a test string",
+        DrawableText dText = new DrawableText("this a string",
                 textInfo,
                 new ScreenArea(1600, 100, 300, 100),
                 20);

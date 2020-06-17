@@ -16,6 +16,8 @@ import javafx.scene.text.TextAlignment;
 
 public class MainMenuState extends GameState {
     private int buttonIndex;
+    private int selectedButtonOffset = 0;
+    private double timePassed = 0.0;
 
     private ScreenArea saStart;
     private ScreenArea saOptions;
@@ -31,6 +33,7 @@ public class MainMenuState extends GameState {
 
     @Override
     public void enter() {
+        //play music
         AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
 
         //create background
@@ -68,8 +71,6 @@ public class MainMenuState extends GameState {
         RenderManager.getInstance().addDrawable(dtStart);
         RenderManager.getInstance().addDrawable(dtOptions);
         RenderManager.getInstance().addDrawable(dtExit);
-
-        this.updateHighlight();
     }
 
     @Override
@@ -79,7 +80,31 @@ public class MainMenuState extends GameState {
 
     @Override
     public void update(double time) {
+        if (this.selectedButtonOffset < 100) {
+            this.timePassed += time;
+            if (this.timePassed > 0.01) {
+                this.timePassed = 0.0;
+                int moveDistance = (int)(time * 1000);
+                this.selectedButtonOffset += moveDistance;
+                switch (this.buttonIndex) {
+                    case 0:
+                        this.saStart.move(moveDistance, 0);
+                        this.saStartText.move(moveDistance, 0);
+                        break;
+                    case 1:
+                        this.saOptions.move(moveDistance, 0);
+                        this.saOptionsText.move(moveDistance, 0);
+                        break;
+                    case 2:
+                        this.saExit.move(moveDistance, 0);
+                        this.saExitText.move(moveDistance, 0);
+                        break;
+                    default:
 
+                        break;
+                }
+            }
+        }
     }
 
     @Override
@@ -126,19 +151,13 @@ public class MainMenuState extends GameState {
     }
 
     private void updateHighlight() {
-//        switch (this.buttonIndex) {
-//            case 0:
-//                this.dHighlight.setScreenArea(this.dStart.getScreenArea());
-//                break;
-//            case 1:
-//                this.dHighlight.setScreenArea(this.dOptions.getScreenArea());
-//                break;
-//            case 2:
-//                this.dHighlight.setScreenArea(this.dExit.getScreenArea());
-//                break;
-//            default:
-//                this.dHighlight.setScreenArea(new ScreenArea(0, 0, 0, 0));
-//                break;
-//        }
+        this.saStart.moveTo(-200, 100);
+        this.saStartText.moveTo(50, 100);
+        this.saOptions.moveTo(-200, 300);
+        this.saOptionsText.moveTo(50, 300);
+        this.saExit.moveTo(-200, 500);
+        this.saExitText.moveTo(50, 500);
+        this.selectedButtonOffset = 0;
+
     }
 }

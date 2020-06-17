@@ -31,7 +31,7 @@ public class MainMenuState extends GameState {
 
     @Override
     public void enter() {
-        //AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
+        AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
 
         //create background
         DrawableImage background = new DrawableImage("/images/demo/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
@@ -87,14 +87,14 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.getInstance().playSound("/sound/bush.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.wav");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.getInstance().playSound("/sound/bush.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.wav");
                 break;
             case ENTER:
-                AudioManager.getInstance().playSound("/sound/Intermission.mp3");
+                AudioManager.getInstance().playSound("/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 break;
             default:
 

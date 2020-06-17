@@ -7,8 +7,8 @@ package engine.visual.screen;
 public class ScreenSettings { //TODO doubles or int?
     public static final int baseWidth = 1920;
     public static final int baseHeight = 1080; //todo find a better solution for this
-    public static int screenWidth = 700;
-    public static int screenHeight = 500;
+    public static int screenWidth = 1440;
+    public static int screenHeight = 810;
     public static boolean firstStartup = true;
 
     public static int toBaseX(double screenX) {//

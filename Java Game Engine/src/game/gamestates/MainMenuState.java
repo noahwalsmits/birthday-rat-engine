@@ -15,11 +15,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 public class MainMenuState extends GameState {
-    private DrawableImage dStart;
-    private DrawableImage dOptions;
-    private DrawableImage dExit;
-    private DrawableImage dHighlight;
     private int buttonIndex;
+
+    private ScreenArea saStart;
+    private ScreenArea saOptions;
+    private ScreenArea saExit;
+    private ScreenArea saStartText;
+    private ScreenArea saOptionsText;
+    private ScreenArea saExitText;
 
     public MainMenuState(Game game) {
         super(game);
@@ -28,34 +31,45 @@ public class MainMenuState extends GameState {
 
     @Override
     public void enter() {
-        this.dStart = new DrawableImage("/images/demo/startgame.png", new ScreenArea(1600, 100, 300, 100), 10);
-        this.dOptions = new DrawableImage("/images/demo/options.png", new ScreenArea(1600, 300, 300, 100), 10);
-        this.dExit = new DrawableImage("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
-        this.dHighlight = new DrawableImage("/images/demo/highlight.png", null, 20);
+        //AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
 
-        this.updateHighlight();
-
-        RenderManager.getInstance().addDrawable(this.dStart);
-        RenderManager.getInstance().addDrawable(this.dOptions);
-        RenderManager.getInstance().addDrawable(this.dExit);
-        RenderManager.getInstance().addDrawable(this.dHighlight);
-
-        DrawableImage background = new DrawableImage("/images/demo/background.png", new ScreenArea(0, 0, 1920, 1080), 0);
+        //create background
+        DrawableImage background = new DrawableImage("/images/demo/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
         RenderManager.getInstance().addDrawable(background);
 
-        TextInfo textInfo = new TextInfo(new Font("calibri", 20.0),
+        //set button locations
+        this.saStart = new ScreenArea(-200, 100, 700, 100);
+        this.saOptions = new ScreenArea(-200, 300, 700, 100);
+        this.saExit = new ScreenArea(-200, 500, 700, 100);
+        this.saStartText = new ScreenArea(50, 100, 700, 100);
+        this.saOptionsText = new ScreenArea(50, 300, 700, 100);
+        this.saExitText = new ScreenArea(50, 500, 700, 100);
+
+        //create button backgrounds
+        DrawableImage diStart = new DrawableImage("/images/demo/buttonBackground.png", saStart, 10);
+        DrawableImage diOptions = new DrawableImage("/images/demo/buttonBackground.png", saOptions, 10);
+        DrawableImage diExit = new DrawableImage("/images/demo/buttonBackground.png", saExit, 10);
+        RenderManager.getInstance().addDrawable(diStart);
+        RenderManager.getInstance().addDrawable(diOptions);
+        RenderManager.getInstance().addDrawable(diExit);
+
+        //create shared text info
+        TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
                 TextAlignment.LEFT,
-                VPos.BASELINE,
-                Color.WHITE,
+                VPos.CENTER,
                 Color.BLACK,
-                0.3);
+                null,
+                1.0);
 
-        DrawableText dText = new DrawableText("this a string",
-                textInfo,
-                new ScreenArea(1600, 100, 300, 100),
-                20);
-        RenderManager.getInstance().addDrawable(dText);
+        //create button texts
+        DrawableText dtStart = new DrawableText("Start", textInfo, this.saStartText, 20);
+        DrawableText dtOptions = new DrawableText("Options", textInfo, this.saOptionsText, 20);
+        DrawableText dtExit = new DrawableText("Exit", textInfo, this.saExitText, 20);
+        RenderManager.getInstance().addDrawable(dtStart);
+        RenderManager.getInstance().addDrawable(dtOptions);
+        RenderManager.getInstance().addDrawable(dtExit);
 
+        this.updateHighlight();
     }
 
     @Override
@@ -73,14 +87,17 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.getInstance().playSound("/sound/nope.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.mp3");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.getInstance().playSound("/sound/nope.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.mp3");
                 break;
             case ENTER:
                 AudioManager.getInstance().playSound("/sound/Intermission.mp3");
+                break;
+            default:
+
                 break;
         }
     }
@@ -109,19 +126,19 @@ public class MainMenuState extends GameState {
     }
 
     private void updateHighlight() {
-        switch (this.buttonIndex) {
-            case 0:
-                this.dHighlight.setScreenArea(this.dStart.getScreenArea());
-                break;
-            case 1:
-                this.dHighlight.setScreenArea(this.dOptions.getScreenArea());
-                break;
-            case 2:
-                this.dHighlight.setScreenArea(this.dExit.getScreenArea());
-                break;
-            default:
-                this.dHighlight.setScreenArea(new ScreenArea(0, 0, 0, 0));
-                break;
-        }
+//        switch (this.buttonIndex) {
+//            case 0:
+//                this.dHighlight.setScreenArea(this.dStart.getScreenArea());
+//                break;
+//            case 1:
+//                this.dHighlight.setScreenArea(this.dOptions.getScreenArea());
+//                break;
+//            case 2:
+//                this.dHighlight.setScreenArea(this.dExit.getScreenArea());
+//                break;
+//            default:
+//                this.dHighlight.setScreenArea(new ScreenArea(0, 0, 0, 0));
+//                break;
+//        }
     }
 }

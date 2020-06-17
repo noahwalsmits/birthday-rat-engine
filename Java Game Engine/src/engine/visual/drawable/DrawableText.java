@@ -18,7 +18,7 @@ public class DrawableText extends Drawable {
 
     @Override
     public void draw(GraphicsContext graphics) {
-        graphics.setFont(this.textInfo.getFont());
+        graphics.setFont(this.textInfo.getFont()); //TODO properly resize font according to screen size
         graphics.setTextAlign(this.textInfo.getTextAlignment());
         graphics.setTextBaseline(this.textInfo.getBaseline());
         graphics.setFill(this.textInfo.getFillColor());

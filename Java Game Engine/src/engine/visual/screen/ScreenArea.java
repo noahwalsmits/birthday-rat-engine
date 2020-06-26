@@ -98,9 +98,13 @@ public class ScreenArea {
      * @param baseHeight The game height of the screen area
      * @return A screen area that is positioned in the middle of the screen
      */
-    public static ScreenArea middleArea(int baseWidth, int baseHeight) {
+    public static ScreenArea MIDDLE(int baseWidth, int baseHeight) {
         int x = (ScreenSettings.screenWidth / 2) + (baseWidth / 2);
         int y = (ScreenSettings.screenHeight / 2) + (baseHeight / 2);
         return new ScreenArea(x, y, baseWidth, baseHeight); //TODO test
+    }
+
+    public static ScreenArea HIDDEN() {
+        return new ScreenArea(-1, -1, 0, 0);
     }
 }

@@ -131,6 +131,7 @@ public class AudioManager {
         clip.setPriority(priority); //default = 0
         clip.play();
     }
+    //TODO: allow for the reuse of audioclips
 
     /**
      * Plays a sound file using the default options, multiple can be played at once when this method is called multiple times

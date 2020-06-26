@@ -1,20 +1,30 @@
 package game.gamestates;
 
 import engine.GameState;
-import engine.Keybinds;
 import engine.sound.AudioManager;
 import engine.visual.Game;
 import engine.visual.RenderManager;
-import engine.visual.drawable.Drawable;
+import engine.visual.drawable.DrawableImage;
+import engine.visual.drawable.DrawableText;
+import engine.visual.drawable.TextInfo;
 import engine.visual.screen.ScreenArea;
+import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class MainMenuState extends GameState {
-    private Drawable dStart;
-    private Drawable dOptions;
-    private Drawable dExit;
-    private Drawable dHighlight;
     private int buttonIndex;
+    private int selectedButtonOffset = 0;
+    private double timePassed = 0.0;
+
+    private ScreenArea saStart;
+    private ScreenArea saOptions;
+    private ScreenArea saExit;
+    private ScreenArea saStartText;
+    private ScreenArea saOptionsText;
+    private ScreenArea saExitText;
 
     public MainMenuState(Game game) {
         super(game);
@@ -23,30 +33,78 @@ public class MainMenuState extends GameState {
 
     @Override
     public void enter() {
-        this.dStart = new Drawable("/images/demo/startgame.png", new ScreenArea(1600, 100, 300, 100), 10);
-        this.dOptions = new Drawable("/images/demo/options.png", new ScreenArea(1600, 300, 300, 100), 10);
-        this.dExit = new Drawable("/images/demo/exitgame.png", new ScreenArea(1600, 500, 300, 100), 10);
-        this.dHighlight = new Drawable("/images/demo/highlight.png", null, 20);
+        //play music
+        AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
 
-        this.updateHighlight();
+        //create background
+        DrawableImage background = new DrawableImage("/images/demo/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
+        background.show();
 
-        RenderManager.getInstance().addDrawable(this.dStart);
-        RenderManager.getInstance().addDrawable(this.dOptions);
-        RenderManager.getInstance().addDrawable(this.dExit);
-        RenderManager.getInstance().addDrawable(this.dHighlight);
+        //set button locations
+        this.saStart = new ScreenArea(-200, 100, 700, 100);
+        this.saOptions = new ScreenArea(-200, 300, 700, 100);
+        this.saExit = new ScreenArea(-200, 500, 700, 100);
+        this.saStartText = new ScreenArea(50, 100, 700, 100);
+        this.saOptionsText = new ScreenArea(50, 300, 700, 100);
+        this.saExitText = new ScreenArea(50, 500, 700, 100);
 
-        Drawable background = new Drawable("/images/demo/background.png", new ScreenArea(0, 0, 1920, 1080), 0);
-        RenderManager.getInstance().addDrawable(background);
+        //create button backgrounds
+        DrawableImage diStart = new DrawableImage("/images/demo/buttonBackground.png", saStart, 10);
+        DrawableImage diOptions = new DrawableImage("/images/demo/buttonBackground.png", saOptions, 10);
+        DrawableImage diExit = new DrawableImage("/images/demo/buttonBackground.png", saExit, 10);
+        diStart.show();
+        diOptions.show();
+        diExit.show();
+
+        //create shared text info
+        TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
+                TextAlignment.LEFT,
+                VPos.CENTER,
+                Color.BLACK,
+                null,
+                1.0);
+
+        //create button texts
+        DrawableText dtStart = new DrawableText("Start", textInfo, this.saStartText, 20);
+        DrawableText dtOptions = new DrawableText("Options", textInfo, this.saOptionsText, 20);
+        DrawableText dtExit = new DrawableText("Exit", textInfo, this.saExitText, 20);
+        dtStart.show();
+        dtOptions.show();
+        dtExit.show();
     }
 
     @Override
     public void exit() {
-        RenderManager.getInstance().clearDrawables();
+        this.getGame().clearDrawables();
     }
 
     @Override
     public void update(double time) {
+        if (this.selectedButtonOffset < 100) {
+            this.timePassed += time;
+            if (this.timePassed > 0.01) {
+                this.timePassed = 0.0;
+                int moveDistance = (int)(time * 1000);
+                this.selectedButtonOffset += moveDistance;
+                switch (this.buttonIndex) {
+                    case 0:
+                        this.saStart.move(moveDistance, 0);
+                        this.saStartText.move(moveDistance, 0);
+                        break;
+                    case 1:
+                        this.saOptions.move(moveDistance, 0);
+                        this.saOptionsText.move(moveDistance, 0);
+                        break;
+                    case 2:
+                        this.saExit.move(moveDistance, 0);
+                        this.saExitText.move(moveDistance, 0);
+                        break;
+                    default:
 
+                        break;
+                }
+            }
+        }
     }
 
     @Override
@@ -54,14 +112,17 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.getInstance().playSound("/sound/nope.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.wav");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.getInstance().playSound("/sound/nope.mp3");
+                AudioManager.getInstance().playSound("/sound/bush.wav");
                 break;
             case ENTER:
-                AudioManager.getInstance().playSound("/sound/Intermission.mp3");
+                AudioManager.getInstance().playSound("/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
+                break;
+            default:
+
                 break;
         }
     }
@@ -90,19 +151,13 @@ public class MainMenuState extends GameState {
     }
 
     private void updateHighlight() {
-        switch (this.buttonIndex) {
-            case 0:
-                this.dHighlight.setScreenArea(this.dStart.getScreenArea());
-                break;
-            case 1:
-                this.dHighlight.setScreenArea(this.dOptions.getScreenArea());
-                break;
-            case 2:
-                this.dHighlight.setScreenArea(this.dExit.getScreenArea());
-                break;
-            default:
-                this.dHighlight.setScreenArea(new ScreenArea(0, 0, 0, 0));
-                break;
-        }
+        this.saStart.moveTo(-200, 100);
+        this.saStartText.moveTo(50, 100);
+        this.saOptions.moveTo(-200, 300);
+        this.saOptionsText.moveTo(50, 300);
+        this.saExit.moveTo(-200, 500);
+        this.saExitText.moveTo(50, 500);
+        this.selectedButtonOffset = 0;
+
     }
 }

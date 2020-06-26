@@ -1,0 +1,22 @@
+Must have:
+	Restrict access to Game class
+	Restrict access to engine as much as possible
+	DrawableImages able to share Image
+	Strip AudioManager to a minimum
+	Allow AudioManager to reuse the same soundclip
+	Create ScreenArea based on screen percentage
+
+Should have:
+	Gameplay demo
+	FPS counter
+	Update documentation and todo's
+	Fix DrawableText resizing
+
+Could have:
+	Multiple music tracks in AudioManager
+	Animated Drawables
+	intermediate.LinkedButtons
+
+Won't have:
+	New button input system
+	Mouse input

@@ -1,6 +1,5 @@
 package engine.visual;
 
-import engine.visual.drawable.Drawable;
 import engine.visual.screen.ScreenSettings;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -48,7 +47,7 @@ public class RenderManager {
      *
      * @param drawable
      */
-    public void addDrawable(Drawable drawable) {
+    void addDrawable(Drawable drawable) {
         if (drawable.getScreenArea() == null) {
             System.out.println(TAG + " warning: drawable had null ScreenArea and was not added");
             return;
@@ -56,7 +55,7 @@ public class RenderManager {
         this.drawables.add(drawable);
     }
 
-    public void removeDrawable(Drawable drawable) {
+    void removeDrawable(Drawable drawable) {
         this.drawables.remove(drawable);
     }
 
@@ -65,6 +64,10 @@ public class RenderManager {
      */
     public void clearDrawables() {
         this.drawables.clear();
+    }
+
+    void stop() {
+        //nothing to implement here yet
     }
 
     private Comparator<Drawable> drawableComparator() {
@@ -82,9 +85,4 @@ public class RenderManager {
             }
         };
     }
-
-    void stop() {
-
-    }
-
 }

@@ -1,4 +1,4 @@
-package engine.visual.drawable;
+package engine.visual;
 
 import engine.visual.RenderManager;
 import engine.visual.screen.ScreenArea;
@@ -20,7 +20,11 @@ abstract public class Drawable {
      */
     abstract public void draw(GraphicsContext graphics);
 
-    public void remove() {
+    public void show() {
+        RenderManager.getInstance().addDrawable(this);
+    }
+
+    public void hide() {
         RenderManager.getInstance().removeDrawable(this);
     }
 

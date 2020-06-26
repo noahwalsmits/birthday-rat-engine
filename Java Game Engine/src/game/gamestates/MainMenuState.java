@@ -75,7 +75,7 @@ public class MainMenuState extends GameState {
 
     @Override
     public void exit() {
-        RenderManager.getInstance().clearDrawables();
+        this.getGame().clearDrawables();
     }
 
     @Override

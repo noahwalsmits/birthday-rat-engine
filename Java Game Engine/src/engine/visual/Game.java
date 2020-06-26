@@ -70,14 +70,21 @@ public class Game extends Application {
         this.gameState.enter();
     }
 
-    public void update(double time) {
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        RenderManager.getInstance().stop();
+        this.gameState.exit();
+    }
+
+    private void update(double time) {
         //todo fps counter
 
         //this.gameLogic.update(time); //todo make asynchronous
         this.gameState.update(time);
     }
 
-    public void draw(GraphicsContext graphics) {
+    private void draw(GraphicsContext graphics) {
         RenderManager.getInstance().draw();
     }
 
@@ -86,10 +93,8 @@ public class Game extends Application {
         newState.enter();
     }
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        RenderManager.getInstance().stop();
-        this.gameState.exit();
+    public void clearDrawables() {
+        RenderManager.getInstance().clearDrawables();
     }
+
 }

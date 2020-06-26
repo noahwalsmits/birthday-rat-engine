@@ -18,7 +18,7 @@ public class RenderManager {
         this.drawables = new TreeSet<>(this.drawableComparator());
     }
 
-    public static RenderManager getInstance() {
+    static RenderManager getInstance() {
         if (instance == null) {
             instance = new RenderManager();
         }
@@ -62,7 +62,7 @@ public class RenderManager {
     /**
      * Removes all drawables from the RenderManager.
      */
-    public void clearDrawables() {
+    void clearDrawables() {
         this.drawables.clear();
     }
 

@@ -1,10 +1,10 @@
 package engine.visual.drawable;
 
-import com.sun.istack.internal.Nullable;
 import javafx.geometry.VPos;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * The information needed for drawing text in a certain way can be stored in this object.

@@ -16,6 +16,7 @@ Could have:
 	Multiple music tracks in AudioManager
 	Animated Drawables
 	intermediate.LinkedButtons
+	Fullscreen support
 
 Won't have:
 	New button input system

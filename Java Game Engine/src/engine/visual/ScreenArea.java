@@ -1,4 +1,4 @@
-package engine.visual.screen;
+package engine.visual;
 
 /**
  * Defines an area on a screen. The location is based on the game width and height of the screen, which are defined in ScreenSettings.
@@ -24,7 +24,7 @@ public class ScreenArea {
      * @return The X coordinate resized to fit the current screen size
      */
     public double getX() {
-        return this.baseX * ((double) ScreenSettings.screenWidth / ScreenSettings.baseWidth);
+        return this.baseX * ((double) ScreenSettings.getScreenWidth() / ScreenSettings.baseWidth);
     }
 
     /**
@@ -33,7 +33,7 @@ public class ScreenArea {
      * @return The Y coordinate resized to fit the current screen size
      */
     public double getY() {
-        return this.baseY * ((double) ScreenSettings.screenHeight / ScreenSettings.baseHeight);
+        return this.baseY * ((double) ScreenSettings.getScreenHeight() / ScreenSettings.baseHeight);
     }
 
     /**
@@ -42,14 +42,14 @@ public class ScreenArea {
      * @return The width resized to fit the current screen size
      */
     public double getWidth() {
-        return this.baseWidth * ((double) ScreenSettings.screenWidth / ScreenSettings.baseWidth);
+        return this.baseWidth * ((double) ScreenSettings.getScreenWidth() / ScreenSettings.baseWidth);
     }
 
     /**
      * @return The height resized to fit the current screen size
      */
     public double getHeight() {
-        return this.baseHeight * ((double) ScreenSettings.screenHeight / ScreenSettings.baseHeight);
+        return this.baseHeight * ((double) ScreenSettings.getScreenHeight() / ScreenSettings.baseHeight);
     }
 
     /**
@@ -82,8 +82,8 @@ public class ScreenArea {
     public boolean isInsideScreen() {
         return this.getX() >= 0 &&
                 this.getY() >= 0 &&
-                this.getX() + this.getWidth() <= ScreenSettings.screenWidth &&
-                this.getY() + this.getHeight() <= ScreenSettings.screenHeight;
+                this.getX() + this.getWidth() <= ScreenSettings.getScreenWidth() &&
+                this.getY() + this.getHeight() <= ScreenSettings.getScreenHeight();
     }
 
     @Override
@@ -99,8 +99,8 @@ public class ScreenArea {
      * @return A screen area that is positioned in the middle of the screen
      */
     public static ScreenArea MIDDLE(int baseWidth, int baseHeight) {
-        int x = (ScreenSettings.screenWidth / 2) + (baseWidth / 2);
-        int y = (ScreenSettings.screenHeight / 2) + (baseHeight / 2);
+        int x = (ScreenSettings.getScreenWidth() / 2) + (baseWidth / 2);
+        int y = (ScreenSettings.getScreenHeight() / 2) + (baseHeight / 2);
         return new ScreenArea(x, y, baseWidth, baseHeight); //TODO test
     }
 

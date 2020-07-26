@@ -1,7 +1,7 @@
 package engine.visual.drawable;
 
 import engine.visual.Drawable;
-import engine.visual.screen.ScreenArea;
+import engine.visual.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -32,6 +32,11 @@ public class DrawableImage extends Drawable {
     @Override
     public void draw(GraphicsContext graphics) {
         graphics.drawImage(this.image, super.getScreenArea().getX(), super.getScreenArea().getY());
+    }
+
+    @Override
+    public void resize() {
+        this.image = generateImage(this.imagePath, super.getScreenArea());
     }
 
     /**

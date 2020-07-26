@@ -1,7 +1,6 @@
 package engine.visual;
 
 import engine.GameState;
-import engine.visual.screen.ScreenSettings;
 import game.GameInfo;
 import game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;
@@ -23,15 +22,17 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.canvas = new Canvas(ScreenSettings.screenWidth, ScreenSettings.screenHeight);
+        this.canvas = new ResizableCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        RenderManager.getInstance().setGraphics(gc);
 
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(this.canvas);
         mainPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
-        Scene scene = new Scene(mainPane, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
+        this.canvas.widthProperty().bind(mainPane.widthProperty());
+        this.canvas.heightProperty().bind(mainPane.heightProperty());
+
+        Scene scene = new Scene(mainPane, ScreenSettings.getScreenWidth(), ScreenSettings.getScreenHeight());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -45,7 +46,7 @@ public class Game extends Application {
             }
         });
 
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.setScene(scene);
         primaryStage.setTitle(GameInfo.WINDOW_TITLE);
         primaryStage.show();

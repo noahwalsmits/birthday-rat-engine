@@ -1,6 +1,5 @@
 package engine.visual;
 
-import engine.visual.screen.ScreenSettings;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Comparator;
@@ -35,7 +34,7 @@ public class RenderManager {
     }
 
     void draw() {
-        graphics.clearRect(0.0, 0.0, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
+        graphics.clearRect(0.0, 0.0, ScreenSettings.getScreenWidth(), ScreenSettings.getScreenHeight());
         for (Drawable drawable : this.drawables) {
             drawable.draw(this.graphics);
         }
@@ -64,6 +63,12 @@ public class RenderManager {
      */
     void clearDrawables() {
         this.drawables.clear();
+    }
+
+    void resizeDrawables() {
+        for (Drawable drawable : this.drawables) {
+            drawable.resize();
+        }
     }
 
     void stop() {

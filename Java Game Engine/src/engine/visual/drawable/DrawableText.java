@@ -1,7 +1,7 @@
 package engine.visual.drawable;
 
 import engine.visual.Drawable;
-import engine.visual.screen.ScreenArea;
+import engine.visual.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
 
 public class DrawableText extends Drawable {
@@ -51,6 +51,11 @@ public class DrawableText extends Drawable {
                     super.getScreenArea().getY() + yOffset,
                     super.getScreenArea().getX() + super.getScreenArea().getWidth());
         }
+    }
+
+    @Override
+    public void resize() {
+        //TODO implement
     }
 
     public String getText() {

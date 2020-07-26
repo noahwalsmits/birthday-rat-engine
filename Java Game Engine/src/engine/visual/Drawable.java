@@ -1,7 +1,5 @@
 package engine.visual;
 
-import engine.visual.RenderManager;
-import engine.visual.screen.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
 
 abstract public class Drawable {
@@ -27,6 +25,8 @@ abstract public class Drawable {
     public void hide() {
         RenderManager.getInstance().removeDrawable(this);
     }
+
+    public abstract void resize();
 
     public ScreenArea getScreenArea() {
         return this.screenArea;

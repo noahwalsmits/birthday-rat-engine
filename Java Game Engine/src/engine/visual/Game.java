@@ -11,7 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Game extends Application {
@@ -26,6 +29,7 @@ public class Game extends Application {
 
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(this.canvas);
+        mainPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
         Scene scene = new Scene(mainPane, ScreenSettings.screenWidth, ScreenSettings.screenHeight);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

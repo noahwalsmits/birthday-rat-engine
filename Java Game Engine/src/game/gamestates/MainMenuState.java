@@ -111,14 +111,14 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.getInstance().playSound("/sound/bush.wav");
+                AudioManager.playSound("/sound/bush.wav");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.getInstance().playSound("/sound/bush.wav");
+                AudioManager.playSound("/sound/bush.wav");
                 break;
             case ENTER:
-                AudioManager.getInstance().playSound("/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
+                AudioManager.playSound("/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 break;
             default:
 

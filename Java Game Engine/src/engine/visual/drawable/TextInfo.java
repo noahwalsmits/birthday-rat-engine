@@ -33,6 +33,7 @@ public class TextInfo {
 //    public TextInfo(Font font, @Nullable Color fillColor, @Nullable Color strokeColor) {
 //        this(font, TextAlignment.CENTER,fillColor, strokeColor, 1.0);
 //    }
+    //TODO use fonts from files
 
     public Font getFont() {
         return font;

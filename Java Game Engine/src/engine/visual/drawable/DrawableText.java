@@ -56,6 +56,8 @@ public class DrawableText extends Drawable {
     @Override
     public void resize() {
         //TODO implement
+        this.textInfo.setFontSize(this.getScreenArea().getHeight() * 1.33); //convert pixels to points
+        //TODO have font size be based on screenarea
     }
 
     public String getText() {

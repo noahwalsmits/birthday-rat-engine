@@ -61,7 +61,7 @@ public class DrawableImage extends Drawable {
                     true); //true = better quality resize || false = faster resize
         } catch (NullPointerException e) {
             System.out.println("Drawable: Could not find image");
-            generatedImage = new Image(getClass().getResource("/images/engine/missing_image.png").toString(),
+            generatedImage = new Image(getClass().getResource("/engine/missing_image.png").toString(),
                     (double) screenArea.getWidth(),
                     (double) screenArea.getHeight(),
                     false,

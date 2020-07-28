@@ -33,10 +33,10 @@ public class MainMenuState extends GameState {
     @Override
     public void enter() {
         //play music
-        AudioManager.getInstance().playMusic("/sound/rainsong.mp3", true);
+        AudioManager.getInstance().playMusic("/game/sound/rainsong.mp3", true);
 
         //create background
-        DrawableImage background = new DrawableImage("/images/demo/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
+        DrawableImage background = new DrawableImage("/game/images/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
         background.show();
 
         //set button locations
@@ -48,9 +48,9 @@ public class MainMenuState extends GameState {
         this.saExitText = new ScreenArea(50, 500, 700, 100);
 
         //create button backgrounds
-        DrawableImage diStart = new DrawableImage("/images/demo/buttonBackground.png", saStart, 10);
-        DrawableImage diOptions = new DrawableImage("/images/demo/buttonBackground.png", saOptions, 10);
-        DrawableImage diExit = new DrawableImage("/images/demo/buttonBackground.png", saExit, 10);
+        DrawableImage diStart = new DrawableImage("/game/images/buttonBackground.png", saStart, 10);
+        DrawableImage diOptions = new DrawableImage("/game/images/buttonBackground.png", saOptions, 10);
+        DrawableImage diExit = new DrawableImage("/game/images/buttonBackground.png", saExit, 10);
         diStart.show();
         diOptions.show();
         diExit.show();
@@ -111,14 +111,14 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.playSound("/sound/bush.wav");
+                AudioManager.playSound("/game/sound/bush.wav");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.playSound("/sound/bush.wav");
+                AudioManager.playSound("/game/sound/bush.wav");
                 break;
             case ENTER:
-                AudioManager.playSound("/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
+                AudioManager.playSound("/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 break;
             default:
 

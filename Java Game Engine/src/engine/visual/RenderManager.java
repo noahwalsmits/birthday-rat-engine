@@ -66,6 +66,7 @@ public class RenderManager {
     }
 
     void resizeDrawables() {
+        //TODO put in new thread :)
         for (Drawable drawable : this.drawables) {
             drawable.resize();
         }

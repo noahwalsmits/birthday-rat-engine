@@ -75,6 +75,7 @@ public class MainMenuState extends GameState {
     @Override
     public void exit() {
         this.getGame().clearDrawables();
+        AudioManager.getInstance().stopMusic();
     }
 
     @Override
@@ -119,6 +120,9 @@ public class MainMenuState extends GameState {
                 break;
             case ENTER:
                 AudioManager.playSound("/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
+                if (this.buttonIndex == 0) {
+                    this.changeState(new StickBugState(this.getGame()));
+                }
                 break;
             default:
 

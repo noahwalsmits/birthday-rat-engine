@@ -40,8 +40,8 @@ public abstract class GameState {
      * @param newState The new state to change to.
      */
     public void changeState(GameState newState) {
-        this.game.stateChanged(newState);
         this.exit();
+        this.game.stateChanged(newState);
         this.game = null;
     }
 

@@ -1,7 +1,7 @@
-package engine.visual.drawable;
+package code.engine.visual.drawable;
 
-import engine.visual.Drawable;
-import engine.visual.ScreenArea;
+import code.engine.visual.Drawable;
+import code.engine.visual.ScreenArea;
 import javafx.scene.canvas.GraphicsContext;
 
 public class DrawableText extends Drawable {

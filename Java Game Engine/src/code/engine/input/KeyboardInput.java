@@ -1,4 +1,4 @@
-package engine.input;
+package code.engine.input;
 
 public class KeyboardInput {
 

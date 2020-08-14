@@ -1,8 +1,8 @@
-package engine.visual;
+package code.engine.visual;
 
-import engine.GameState;
-import game.GameInfo;
-import game.gamestates.MainMenuState;
+import code.engine.GameState;
+import code.game.GameInfo;
+import code.game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;

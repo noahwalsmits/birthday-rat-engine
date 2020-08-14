@@ -1,4 +1,4 @@
-package intermediate;
+package code.intermediate;
 
 public class ButtonGroup {
 }

@@ -1,12 +1,12 @@
-package game.gamestates;
+package code.game.gamestates;
 
-import engine.GameState;
-import engine.sound.AudioManager;
-import engine.visual.Game;
-import engine.visual.drawable.DrawableImage;
-import engine.visual.drawable.DrawableText;
-import engine.visual.drawable.TextInfo;
-import engine.visual.ScreenArea;
+import code.engine.GameState;
+import code.engine.sound.AudioManager;
+import code.engine.visual.Game;
+import code.engine.visual.drawable.DrawableImage;
+import code.engine.visual.drawable.DrawableText;
+import code.engine.visual.drawable.TextInfo;
+import code.engine.visual.ScreenArea;
 import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -33,10 +33,10 @@ public class MainMenuState extends GameState {
     @Override
     public void enter() {
         //play music
-        AudioManager.getInstance().playMusic("/game/sound/rainsong.mp3", true);
+        AudioManager.getInstance().playMusic("/resources/game/sound/rainsong.mp3", true);
 
         //create background
-        DrawableImage background = new DrawableImage("/game/images/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
+        DrawableImage background = new DrawableImage("/resources/game/images/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
         background.show();
 
         //set button locations
@@ -48,9 +48,9 @@ public class MainMenuState extends GameState {
         this.saExitText = new ScreenArea(50, 500, 700, 100);
 
         //create button backgrounds
-        DrawableImage diStart = new DrawableImage("/game/images/buttonBackground.png", saStart, 10);
-        DrawableImage diOptions = new DrawableImage("/game/images/buttonBackground.png", saOptions, 10);
-        DrawableImage diExit = new DrawableImage("/game/images/buttonBackground.png", saExit, 10);
+        DrawableImage diStart = new DrawableImage("/resources/game/images/buttonBackground.png", saStart, 10);
+        DrawableImage diOptions = new DrawableImage("/resources/game/images/buttonBackground.png", saOptions, 10);
+        DrawableImage diExit = new DrawableImage("/resources/game/images/buttonBackground.png", saExit, 10);
         diStart.show();
         diOptions.show();
         diExit.show();
@@ -112,14 +112,14 @@ public class MainMenuState extends GameState {
         switch (event.getCode()) {
             case W:
                 this.changeButtonIndex(-1);
-                AudioManager.playSound("/game/sound/bush.wav");
+                AudioManager.playSound("/resources/game/sound/bush.wav");
                 break;
             case S:
                 this.changeButtonIndex(1);
-                AudioManager.playSound("/game/sound/bush.wav");
+                AudioManager.playSound("/resources/game/sound/bush.wav");
                 break;
             case ENTER:
-                AudioManager.playSound("/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
+                AudioManager.playSound("/resources/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 if (this.buttonIndex == 0) {
                     this.changeState(new StickBugState(this.getGame()));
                 }

@@ -1,4 +1,4 @@
-package engine.visual;
+package code.engine.visual;
 
 import javafx.scene.canvas.GraphicsContext;
 

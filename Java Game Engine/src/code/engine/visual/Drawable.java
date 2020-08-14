@@ -1,4 +1,4 @@
-package engine.visual;
+package code.engine.visual;
 
 import javafx.scene.canvas.GraphicsContext;
 
@@ -20,6 +20,7 @@ abstract public class Drawable {
 
     public void show() {
         RenderManager.getInstance().addDrawable(this);
+        this.resize();
     }
 
     public void hide() {

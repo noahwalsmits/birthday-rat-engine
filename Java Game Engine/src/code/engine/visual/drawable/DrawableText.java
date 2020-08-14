@@ -19,7 +19,7 @@ public class DrawableText extends Drawable {
 
     @Override
     public void draw(GraphicsContext graphics) {
-        graphics.setFont(this.textInfo.getFont()); //TODO properly resize font according to screen size
+        graphics.setFont(this.textInfo.getFont());
         graphics.setTextAlign(this.textInfo.getTextAlignment());
         graphics.setTextBaseline(this.textInfo.getBaseline());
         graphics.setFill(this.textInfo.getFillColor());
@@ -55,8 +55,7 @@ public class DrawableText extends Drawable {
 
     @Override
     public void resize() {
-        //TODO implement
-        this.textInfo.setFontSize(this.getScreenArea().getHeight() * 1.33); //convert pixels to points
+        this.textInfo.setFontSize(this.getScreenArea().getHeight()); //convert pixels to points
         //TODO have font size be based on screenarea
     }
 

@@ -1,6 +1,6 @@
-package engine;
+package code.engine;
 
-import engine.visual.Game;
+import code.engine.visual.Game;
 import javafx.scene.input.KeyEvent;
 
 public abstract class GameState {
@@ -11,12 +11,12 @@ public abstract class GameState {
     }
 
     /**
-     * Gets called on the new GameState when the state is changed, and when the game starts
+     * Gets called on the new GameState when the state is changed, and when the code.game starts
      */
     public abstract void enter();
 
     /**
-     * Gets called on the old GameState when the state is changed, and when the game is closed
+     * Gets called on the old GameState when the state is changed, and when the code.game is closed
      */
     public abstract void exit();
 
@@ -32,7 +32,7 @@ public abstract class GameState {
     public abstract void keyReleased(KeyEvent event);
 
     /**
-     * Changes the state of the game by sending a new state to the Game object.
+     * Changes the state of the code.game by sending a new state to the Game object.
      * The current state will no longer be used after the state has been changed.
      * The old state will execute its exit() method when the state is changed.
      * The new state will execute its enter() method when the state is changed.

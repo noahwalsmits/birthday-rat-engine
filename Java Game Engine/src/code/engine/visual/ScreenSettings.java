@@ -1,4 +1,4 @@
-package engine.visual;
+package code.engine.visual;
 
 /**
  * Used to resize to other screen sizes

@@ -1,7 +1,7 @@
-package game;
+package code.game;
 
 /**
- * Basic information and settings about the game can be changed here.
+ * Basic information and settings about the code.game can be changed here.
  */
 public class GameInfo {
     public static final String NAME = "Example Game";

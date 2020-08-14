@@ -1,7 +1,6 @@
-package engine.visual;
+package code.engine.visual;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.Pane;
 
 public class ResizableCanvas extends Canvas {
 

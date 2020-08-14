@@ -1,12 +1,12 @@
-package game.gamestates;
+package code.game.gamestates;
 
-import engine.GameState;
-import engine.sound.AudioManager;
-import engine.visual.Game;
-import engine.visual.ScreenArea;
-import engine.visual.drawable.DrawableImage;
-import engine.visual.drawable.DrawableText;
-import engine.visual.drawable.TextInfo;
+import code.engine.GameState;
+import code.engine.sound.AudioManager;
+import code.engine.visual.Game;
+import code.engine.visual.ScreenArea;
+import code.engine.visual.drawable.DrawableImage;
+import code.engine.visual.drawable.DrawableText;
+import code.engine.visual.drawable.TextInfo;
 import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -80,10 +80,10 @@ public class StickBugState extends GameState {
         }
 
         ScreenArea backgroundArea = new ScreenArea(0, 0, 1920, 1080);
-        DrawableImage drawableImage = new DrawableImage("/game/images/hqdefault.png", backgroundArea, 0);
+        DrawableImage drawableImage = new DrawableImage("/resources/game/images/hqdefault.png", backgroundArea, 0);
         drawableImage.show();
 
         drawableText.setText("YOU HAVE BEEN STICK BUGGED LOL");
-        AudioManager.getInstance().playMusic("/game/sound/GET STICK BUGGED LOL.mp3", true);
+        AudioManager.getInstance().playMusic("/resources/game/sound/GET STICK BUGGED LOL.mp3", true);
     }
 }

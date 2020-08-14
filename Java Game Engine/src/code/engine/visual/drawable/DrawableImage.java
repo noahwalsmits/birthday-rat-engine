@@ -22,7 +22,7 @@ public class DrawableImage extends Drawable {
             this.image = this.generateImage(imagePath, screenArea);
         }
         this.imagePath = imagePath;
-    }
+    } //TODO only allow paths starting from resources/game/images
 
     /**
      * Draw the image on the screen

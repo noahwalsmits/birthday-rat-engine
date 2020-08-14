@@ -10,6 +10,7 @@ public class RenderManager {
     private static RenderManager instance;
     private GraphicsContext graphics;
     private SortedSet<Drawable> drawables;
+    private boolean isResizing;
 
     private static String TAG = "RenderManager";
 
@@ -66,10 +67,13 @@ public class RenderManager {
     }
 
     void resizeDrawables() {
-        //TODO put in new thread :)
-        for (Drawable drawable : this.drawables) {
-            drawable.resize();
-        }
+        //TODO prevent the creation of unnecessary threads
+        Thread thread = new Thread(() -> {
+            for (Drawable drawable : drawables) {
+                drawable.resize();
+            }
+        });
+        thread.start();
     }
 
     void stop() {
@@ -77,7 +81,7 @@ public class RenderManager {
     }
 
     private Comparator<Drawable> drawableComparator() {
-        return new Comparator<Drawable>() { //TODO
+        return new Comparator<Drawable>() {
             @Override
             public int compare(Drawable o1, Drawable o2) {
                 if (o1.hashCode() - o2.hashCode() != 0) {

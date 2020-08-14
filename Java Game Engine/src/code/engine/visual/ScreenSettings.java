@@ -4,9 +4,9 @@ package code.engine.visual;
  * Used to resize to other screen sizes
  * Different screen ratio's will cause it to look stretched
  */
-public class ScreenSettings { //TODO doubles or int?
+public class ScreenSettings {
     public static final int baseWidth = 1920;
-    public static final int baseHeight = 1080; //todo find a better solution for this
+    public static final int baseHeight = 1080;
     private static int screenWidth = 1440;
     private static int screenHeight = 810;
 

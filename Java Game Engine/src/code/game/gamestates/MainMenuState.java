@@ -37,7 +37,6 @@ public class MainMenuState extends GameState {
 
         //create background
         DrawableImage background = new DrawableImage("/resources/game/images/mainmenu.jpg", new ScreenArea(0, 0, 1920, 1080), 0);
-        background.show();
 
         //set button locations
         this.saStart = new ScreenArea(-200, 100, 700, 100);
@@ -51,9 +50,6 @@ public class MainMenuState extends GameState {
         DrawableImage diStart = new DrawableImage("/resources/game/images/buttonBackground.png", saStart, 10);
         DrawableImage diOptions = new DrawableImage("/resources/game/images/buttonBackground.png", saOptions, 10);
         DrawableImage diExit = new DrawableImage("/resources/game/images/buttonBackground.png", saExit, 10);
-        diStart.show();
-        diOptions.show();
-        diExit.show();
 
         //create shared text info
         TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
@@ -67,9 +63,6 @@ public class MainMenuState extends GameState {
         DrawableText dtStart = new DrawableText("Start", textInfo, this.saStartText, 20);
         DrawableText dtOptions = new DrawableText("Options", textInfo, this.saOptionsText, 20);
         DrawableText dtExit = new DrawableText("Exit", textInfo, this.saExitText, 20);
-        dtStart.show();
-        dtOptions.show();
-        dtExit.show();
     }
 
     @Override

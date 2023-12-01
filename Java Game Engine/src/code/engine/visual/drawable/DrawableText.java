@@ -15,6 +15,7 @@ public class DrawableText extends Drawable {
         super(screenArea, priority);
         this.text = text;
         this.textInfo = textInfo;
+        this.show();
     }
 
     @Override

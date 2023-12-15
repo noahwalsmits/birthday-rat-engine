@@ -114,7 +114,7 @@ public class MainMenuState extends GameState {
             case ENTER:
                 AudioManager.playSound("/resources/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 if (this.buttonIndex == 0) {
-                    this.changeState(new StickBugState(this.getGame()));
+                    this.changeState(new PondState(this.getGame()));
                 }
                 break;
             default:

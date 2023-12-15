@@ -11,12 +11,13 @@ public class PondState extends GameState {
 
     public PondState(Game game) {
         super(game);
-        this.player = new FrogCharacter();
     }
 
     @Override
     public void enter() {
         //play music and add background
+
+        this.player = new FrogCharacter();
     }
 
     @Override
@@ -32,6 +33,7 @@ public class PondState extends GameState {
 
     @Override
     public void keyPressed(KeyEvent event) {
+        //TODO deal with held keys
         switch(event.getCode()) {
             case W:
                 this.player.setVerticalInput(this.player.getVerticalInput() + 1.0);
@@ -50,6 +52,19 @@ public class PondState extends GameState {
 
     @Override
     public void keyReleased(KeyEvent event) {
-
+        switch(event.getCode()) {
+            case W:
+                this.player.setVerticalInput(0.0);
+                break;
+            case A:
+                this.player.setHorizontalInput(0.0);
+                break;
+            case S:
+                this.player.setVerticalInput(0.0);
+                break;
+            case D:
+                this.player.setHorizontalInput(0.0);
+                break;
+        }
     }
 }

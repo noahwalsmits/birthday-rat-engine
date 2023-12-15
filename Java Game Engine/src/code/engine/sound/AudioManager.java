@@ -45,6 +45,7 @@ public class AudioManager {
 
         if (this.musicPlayer != null) {
             this.musicPlayer.dispose();
+            this.musicPlayer = null;
         }
         this.musicPlayer = new MediaPlayer(new Media(mediaSource));
         if (loop) {
@@ -63,6 +64,7 @@ public class AudioManager {
         if (this.musicPlayer != null) {
             this.musicPlayer.stop();
             this.musicPlayer.dispose();
+            this.musicPlayer = null;
         }
     }
 

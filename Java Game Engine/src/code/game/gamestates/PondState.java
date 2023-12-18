@@ -33,19 +33,18 @@ public class PondState extends GameState {
 
     @Override
     public void keyPressed(KeyEvent event) {
-        //TODO deal with held keys
         switch(event.getCode()) {
             case W:
-                this.player.setVerticalInput(this.player.getVerticalInput() + 1.0);
+                this.player.setVerticalInput(1.0);
                 break;
             case A:
-                this.player.setHorizontalInput(this.player.getHorizontalInput() - 1.0);
+                this.player.setHorizontalInput(-1.0);
                 break;
             case S:
-                this.player.setVerticalInput(this.player.getVerticalInput() - 1.0);
+                this.player.setVerticalInput(-1.0);
                 break;
             case D:
-                this.player.setHorizontalInput(this.player.getHorizontalInput() + 1.0);
+                this.player.setHorizontalInput(1.0);
                 break;
         }
     }

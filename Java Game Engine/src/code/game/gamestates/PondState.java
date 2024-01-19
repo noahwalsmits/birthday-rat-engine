@@ -5,9 +5,15 @@ import code.engine.sound.AudioManager;
 import code.engine.visual.Game;
 import code.engine.visual.ScreenArea;
 import code.engine.visual.ScreenSettings;
+import code.engine.visual.drawable.DrawableText;
+import code.engine.visual.drawable.TextInfo;
 import code.game.FlyCharacter;
 import code.game.FrogCharacter;
+import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,8 @@ public class PondState extends GameState {
     private List<FlyCharacter> enemies;
     private List<FlyCharacter> eatenEnemies;
     private double secondsUntilEnemySpawn = RESPAWN_TIME_SECONDS;
+    private int score = 0;
+    private DrawableText scoreDisplay;
 
     private static final int STARTING_ENEMY_COUNT = 5;
     private static final int MAX_ENEMY_COUNT = 10;
@@ -37,6 +45,16 @@ public class PondState extends GameState {
         for (int i = 0; i < STARTING_ENEMY_COUNT; i++) {
             spawnEnemy();
         }
+
+        TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
+                TextAlignment.LEFT,
+                VPos.CENTER,
+                Color.WHITE,
+                Color.BLACK,
+                1.0);
+        ScreenArea scoreArea = new ScreenArea(5, 0, 300, 100);
+        this.scoreDisplay = new DrawableText("", textInfo, scoreArea, 20);
+        this.updateScore();
     }
 
     private void spawnEnemy() {
@@ -50,6 +68,10 @@ public class PondState extends GameState {
             spawnY = (int) (Math.random() * ScreenSettings.baseHeight);
         } while (Math.hypot(spawnX + 50 - playerCenterX, spawnY + 50 - playerCenterY) < SPAWN_DISTANCE);
         this.enemies.add(new FlyCharacter(spawnX, spawnY));
+    }
+
+    private void updateScore() {
+        this.scoreDisplay.setText("SCORE: " + this.score + "pts");
     }
 
     @Override
@@ -66,7 +88,8 @@ public class PondState extends GameState {
         for (FlyCharacter enemy : this.enemies) {
             enemy.update(time);
             if (enemy.isEaten(this.player)) {
-                //TODO increase score
+                this.score += enemy.getScoreValue();
+                this.updateScore();
                 this.eatenEnemies.add(enemy);
             }
         }

@@ -9,6 +9,7 @@ public class FlyCharacter {
     private double yPosition;
     private ScreenArea screenArea;
     private DrawableImage image;
+    private int scoreValue = 10;
 
     private static final double SPEED = 1000.0;
 
@@ -46,5 +47,9 @@ public class FlyCharacter {
             return true;
         }
         return false;
+    }
+
+    public int getScoreValue() {
+        return scoreValue;
     }
 }

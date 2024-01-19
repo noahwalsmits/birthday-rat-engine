@@ -16,8 +16,12 @@ public class PondState extends GameState {
     private FrogCharacter player;
     private List<FlyCharacter> enemies;
     private List<FlyCharacter> eatenEnemies;
+    private double secondsUntilEnemySpawn = RESPAWN_TIME_SECONDS;
 
+    private static final int STARTING_ENEMY_COUNT = 5;
+    private static final int MAX_ENEMY_COUNT = 10;
     private static final double SPAWN_DISTANCE = 400.0;
+    private static final double RESPAWN_TIME_SECONDS = 2.0;
 
     public PondState(Game game) {
         super(game);
@@ -30,7 +34,7 @@ public class PondState extends GameState {
         this.player = new FrogCharacter(900, 500);
         this.enemies = new ArrayList<>();
         this.eatenEnemies = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < STARTING_ENEMY_COUNT; i++) {
             spawnEnemy();
         }
     }
@@ -58,6 +62,7 @@ public class PondState extends GameState {
     public void update(double time) {
         this.player.update(time);
 
+        //update enemies
         for (FlyCharacter enemy : this.enemies) {
             enemy.update(time);
             if (enemy.isEaten(this.player)) {
@@ -67,6 +72,15 @@ public class PondState extends GameState {
         }
         this.enemies.removeAll(this.eatenEnemies);
         this.eatenEnemies.clear();
+
+        //tick down respawn timer if there is room for more enemies
+        if (this.enemies.size() < MAX_ENEMY_COUNT) {
+            this.secondsUntilEnemySpawn -= time;
+            if (this.secondsUntilEnemySpawn < 0.0) {
+                this.spawnEnemy();
+                this.secondsUntilEnemySpawn = RESPAWN_TIME_SECONDS;
+            }
+        }
     }
 
     @Override

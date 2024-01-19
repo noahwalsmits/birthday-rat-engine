@@ -11,12 +11,14 @@ public class FrogCharacter {
     private ScreenArea screenArea;
     private DrawableImage image;
 
-    private static final double SPEED = 50.0;
+    private static final double SPEED = 500.0;
 
-    public FrogCharacter() {
+    public FrogCharacter(int startX, int startY) {
         this.horizontalInput = 0.0;
         this.verticalInput = 0.0;
-        this.screenArea = new ScreenArea(100, 100, 100, 100);
+        this.xPosition = startX;
+        this.yPosition = startY;
+        this.screenArea = new ScreenArea(startX, startY, 100, 100);
         this.image = new DrawableImage("/resources/game/images/frog.png", this.screenArea, 10);
     }
 

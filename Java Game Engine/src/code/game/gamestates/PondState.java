@@ -17,7 +17,7 @@ public class PondState extends GameState {
     public void enter() {
         //play music and add background
 
-        this.player = new FrogCharacter();
+        this.player = new FrogCharacter(900, 500);
     }
 
     @Override

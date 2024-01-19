@@ -43,4 +43,8 @@ public class FrogCharacter {
     public void setVerticalInput(double verticalInput) {
         this.verticalInput = verticalInput;
     }
+
+    public ScreenArea getScreenArea() {
+        return screenArea;
+    }
 }

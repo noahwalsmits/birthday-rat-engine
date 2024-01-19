@@ -86,6 +86,13 @@ public class ScreenArea {
                 this.getY() + this.getHeight() <= ScreenSettings.getScreenHeight();
     }
 
+    public boolean intersectsWith(ScreenArea other) {
+        return this.baseX < other.baseX + other.baseWidth
+                && this.baseX + this.baseWidth > other.baseX
+                && this.baseY < other.baseY + other.baseHeight
+                && this.baseY + this.baseHeight > other.baseY;
+    }
+
     public int getBaseWidth() {
         return baseWidth;
     }

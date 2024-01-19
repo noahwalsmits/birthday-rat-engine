@@ -33,6 +33,9 @@ public class PondState extends GameState {
     public void update(double time) {
         this.player.update(time);
         this.enemy.update(time);
+        if (this.enemy.isEaten(this.player)) {
+            //increase score
+        }
     }
 
     @Override

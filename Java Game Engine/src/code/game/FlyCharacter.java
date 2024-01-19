@@ -38,4 +38,13 @@ public class FlyCharacter {
 
         this.screenArea.moveTo((int) this.xPosition, (int) this.yPosition);
     }
+
+    public boolean isEaten(FrogCharacter player) {
+        if (this.screenArea.intersectsWith(player.getScreenArea())) {
+            this.image.hide();
+            //TODO play sound
+            return true;
+        }
+        return false;
+    }
 }

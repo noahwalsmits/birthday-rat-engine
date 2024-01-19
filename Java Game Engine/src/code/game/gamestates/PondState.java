@@ -3,6 +3,8 @@ package code.game.gamestates;
 import code.engine.GameState;
 import code.engine.sound.AudioManager;
 import code.engine.visual.Game;
+import code.engine.visual.ScreenArea;
+import code.engine.visual.ScreenSettings;
 import code.game.FlyCharacter;
 import code.game.FrogCharacter;
 import javafx.scene.input.KeyEvent;
@@ -15,6 +17,8 @@ public class PondState extends GameState {
     private List<FlyCharacter> enemies;
     private List<FlyCharacter> eatenEnemies;
 
+    private static final double SPAWN_DISTANCE = 400.0;
+
     public PondState(Game game) {
         super(game);
     }
@@ -25,12 +29,23 @@ public class PondState extends GameState {
 
         this.player = new FrogCharacter(900, 500);
         this.enemies = new ArrayList<>();
-        this.enemies.add(new FlyCharacter(100, 100));
-        this.enemies.add(new FlyCharacter(300, 100));
-        this.enemies.add(new FlyCharacter(500, 100));
-        this.enemies.add(new FlyCharacter(700, 100));
-        this.enemies.add(new FlyCharacter(900, 100));
         this.eatenEnemies = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            spawnEnemy();
+        }
+    }
+
+    private void spawnEnemy() {
+        int spawnX;
+        int spawnY;
+        ScreenArea playerArea = this.player.getScreenArea();
+        int playerCenterX = (int) (playerArea.getBaseX() + playerArea.getBaseWidth() * 0.5);
+        int playerCenterY = (int) (playerArea.getBaseY() + playerArea.getBaseHeight() * 0.5);;
+        do {
+            spawnX = (int) (Math.random() * ScreenSettings.baseWidth);
+            spawnY = (int) (Math.random() * ScreenSettings.baseHeight);
+        } while (Math.hypot(spawnX + 50 - playerCenterX, spawnY + 50 - playerCenterY) < SPAWN_DISTANCE);
+        this.enemies.add(new FlyCharacter(spawnX, spawnY));
     }
 
     @Override

@@ -37,8 +37,6 @@ public class ScreenArea {
     }
 
     /**
-     * TODO documentation
-     *
      * @return The width resized to fit the current screen size
      */
     public double getWidth() {
@@ -102,6 +100,25 @@ public class ScreenArea {
 
     public boolean intersectsWith(ScreenArea other) {
         return this.intersectsWith(other, 0);
+    }
+
+    /**
+     * @param other The other screen area
+     * @return The distance between the centers of the two screen areas
+     */
+    public double distanceBetween(ScreenArea other) {
+        return Math.hypot(
+                (this.baseX + this.baseWidth * 0.5) - (other.baseX + other.baseWidth * 0.5),
+                (this.baseY + this.baseHeight * 0.5) - (other.baseY + other.baseHeight * 0.5)
+        );
+    }
+
+    public int getBaseX() {
+        return baseX;
+    }
+
+    public int getBaseY() {
+        return baseY;
     }
 
     public int getBaseWidth() {

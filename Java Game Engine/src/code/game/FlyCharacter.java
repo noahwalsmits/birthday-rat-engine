@@ -40,7 +40,7 @@ public class FlyCharacter {
     }
 
     public boolean isEaten(FrogCharacter player) {
-        if (this.screenArea.intersectsWith(player.getScreenArea())) {
+        if (this.screenArea.intersectsWith(player.getScreenArea(), -50)) {
             this.image.hide();
             //TODO play sound
             return true;

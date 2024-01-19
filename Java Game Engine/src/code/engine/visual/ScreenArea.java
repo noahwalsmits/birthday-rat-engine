@@ -86,11 +86,22 @@ public class ScreenArea {
                 this.getY() + this.getHeight() <= ScreenSettings.getScreenHeight();
     }
 
+    /**
+     * Checks if this screen area intersects with another
+     *
+     * @param other          The other screen area
+     * @param boundaryOffset Offsets how close the screen areas need to be in order to intersect eachother
+     * @return True if the screen areas overlap after applying the boundary offset
+     */
+    public boolean intersectsWith(ScreenArea other, int boundaryOffset) {
+        return this.baseX < other.baseX + other.baseWidth + boundaryOffset
+                && this.baseX + this.baseWidth + boundaryOffset > other.baseX
+                && this.baseY < other.baseY + other.baseHeight + boundaryOffset
+                && this.baseY + this.baseHeight + boundaryOffset > other.baseY;
+    }
+
     public boolean intersectsWith(ScreenArea other) {
-        return this.baseX < other.baseX + other.baseWidth
-                && this.baseX + this.baseWidth > other.baseX
-                && this.baseY < other.baseY + other.baseHeight
-                && this.baseY + this.baseHeight > other.baseY;
+        return this.intersectsWith(other, 0);
     }
 
     public int getBaseWidth() {

@@ -7,9 +7,12 @@ import code.game.FlyCharacter;
 import code.game.FrogCharacter;
 import javafx.scene.input.KeyEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PondState extends GameState {
     private FrogCharacter player;
-    private FlyCharacter enemy;
+    private List<FlyCharacter> enemies;
 
     public PondState(Game game) {
         super(game);
@@ -20,7 +23,12 @@ public class PondState extends GameState {
         //play music and add background
 
         this.player = new FrogCharacter(900, 500);
-        this.enemy = new FlyCharacter(100, 100);
+        this.enemies = new ArrayList<>();
+        this.enemies.add(new FlyCharacter(100, 100));
+        this.enemies.add(new FlyCharacter(300, 100));
+        this.enemies.add(new FlyCharacter(500, 100));
+        this.enemies.add(new FlyCharacter(700, 100));
+        this.enemies.add(new FlyCharacter(900, 100));
     }
 
     @Override
@@ -32,9 +40,11 @@ public class PondState extends GameState {
     @Override
     public void update(double time) {
         this.player.update(time);
-        this.enemy.update(time);
-        if (this.enemy.isEaten(this.player)) {
-            //increase score
+        for (FlyCharacter enemy : this.enemies) {
+            enemy.update(time);
+            if (enemy.isEaten(this.player)) {
+                //increase score
+            }
         }
     }
 

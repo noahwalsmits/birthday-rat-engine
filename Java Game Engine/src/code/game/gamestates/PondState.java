@@ -3,11 +3,13 @@ package code.game.gamestates;
 import code.engine.GameState;
 import code.engine.sound.AudioManager;
 import code.engine.visual.Game;
+import code.game.FlyCharacter;
 import code.game.FrogCharacter;
 import javafx.scene.input.KeyEvent;
 
 public class PondState extends GameState {
     private FrogCharacter player;
+    private FlyCharacter enemy;
 
     public PondState(Game game) {
         super(game);
@@ -18,6 +20,7 @@ public class PondState extends GameState {
         //play music and add background
 
         this.player = new FrogCharacter(900, 500);
+        this.enemy = new FlyCharacter(100, 100);
     }
 
     @Override
@@ -29,6 +32,7 @@ public class PondState extends GameState {
     @Override
     public void update(double time) {
         this.player.update(time);
+        this.enemy.update(time);
     }
 
     @Override

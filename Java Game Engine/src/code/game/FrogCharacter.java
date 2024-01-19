@@ -18,7 +18,7 @@ public class FrogCharacter {
         this.verticalInput = 0.0;
         this.xPosition = startX;
         this.yPosition = startY;
-        this.screenArea = new ScreenArea(startX, startY, 100, 100);
+        this.screenArea = new ScreenArea(startX, startY, 150, 150);
         this.image = new DrawableImage("/resources/game/images/frog.png", this.screenArea, 10);
     }
 

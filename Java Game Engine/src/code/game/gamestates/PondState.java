@@ -13,6 +13,7 @@ import java.util.List;
 public class PondState extends GameState {
     private FrogCharacter player;
     private List<FlyCharacter> enemies;
+    private List<FlyCharacter> eatenEnemies;
 
     public PondState(Game game) {
         super(game);
@@ -20,7 +21,7 @@ public class PondState extends GameState {
 
     @Override
     public void enter() {
-        //play music and add background
+        //TODO play music and add background
 
         this.player = new FrogCharacter(900, 500);
         this.enemies = new ArrayList<>();
@@ -29,6 +30,7 @@ public class PondState extends GameState {
         this.enemies.add(new FlyCharacter(500, 100));
         this.enemies.add(new FlyCharacter(700, 100));
         this.enemies.add(new FlyCharacter(900, 100));
+        this.eatenEnemies = new ArrayList<>();
     }
 
     @Override
@@ -40,12 +42,16 @@ public class PondState extends GameState {
     @Override
     public void update(double time) {
         this.player.update(time);
+
         for (FlyCharacter enemy : this.enemies) {
             enemy.update(time);
             if (enemy.isEaten(this.player)) {
-                //increase score
+                //TODO increase score
+                this.eatenEnemies.add(enemy);
             }
         }
+        this.enemies.removeAll(this.eatenEnemies);
+        this.eatenEnemies.clear();
     }
 
     @Override

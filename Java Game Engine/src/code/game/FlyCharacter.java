@@ -1,6 +1,7 @@
 package code.game;
 
 import code.engine.visual.ScreenArea;
+import code.engine.visual.ScreenSettings;
 import code.engine.visual.drawable.DrawableImage;
 
 public class FlyCharacter {
@@ -21,6 +22,20 @@ public class FlyCharacter {
     public void update(double time) {
         this.xPosition += (-SPEED * 0.5 + SPEED * Math.random()) * time;
         this.yPosition += (-SPEED * 0.5 + SPEED * Math.random()) * time;
+
+        if (this.xPosition < 0.0) {
+            this.xPosition = 0.0;
+        }
+        if (this.yPosition < 0.0) {
+            this.yPosition = 0.0;
+        }
+        if (this.xPosition > ScreenSettings.baseWidth - this.screenArea.getBaseWidth()) {
+            this.xPosition = ScreenSettings.baseWidth - this.screenArea.getBaseWidth();
+        }
+        if (this.yPosition > ScreenSettings.baseHeight - this.screenArea.getBaseHeight()) {
+            this.yPosition = ScreenSettings.baseHeight - this.screenArea.getBaseHeight();
+        }
+
         this.screenArea.moveTo((int) this.xPosition, (int) this.yPosition);
     }
 }

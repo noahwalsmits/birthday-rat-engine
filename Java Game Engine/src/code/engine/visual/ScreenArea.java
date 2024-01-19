@@ -86,6 +86,14 @@ public class ScreenArea {
                 this.getY() + this.getHeight() <= ScreenSettings.getScreenHeight();
     }
 
+    public int getBaseWidth() {
+        return baseWidth;
+    }
+
+    public int getBaseHeight() {
+        return baseHeight;
+    }
+
     @Override
     public String toString() {
         return "ScreenArea{(" + baseX + ", " + baseY + "), " + baseWidth + "x" + baseHeight + "}";

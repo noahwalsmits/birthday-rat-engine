@@ -73,3 +73,5 @@ fabric.properties
 Java Game Engine/.idea/
 
 *.class
+
+design documents/*.vpp.*

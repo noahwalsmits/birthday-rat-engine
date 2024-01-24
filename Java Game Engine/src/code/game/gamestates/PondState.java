@@ -37,7 +37,8 @@ public class PondState extends GameState {
 
     @Override
     public void enter() {
-        //TODO play music and add background
+        //TODO add background
+        AudioManager.getInstance().playMusic("/resources/game/sound/debussy.mp3", true);
 
         //create characters
         this.player = new FrogCharacter(900, 500);

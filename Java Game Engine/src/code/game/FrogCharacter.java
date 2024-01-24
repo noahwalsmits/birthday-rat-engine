@@ -39,7 +39,7 @@ public class FrogCharacter {
         if (this.yPosition > ScreenSettings.baseHeight - this.screenArea.getBaseHeight()) {
             this.yPosition = ScreenSettings.baseHeight - this.screenArea.getBaseHeight();
         }
-        
+
         this.screenArea.moveTo((int) this.xPosition, (int) this.yPosition);
     }
 

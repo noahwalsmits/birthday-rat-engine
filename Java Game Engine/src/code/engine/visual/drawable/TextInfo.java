@@ -44,7 +44,7 @@ public class TextInfo {
     }
 
     public void setFontSize(double size) {
-        this.font = new Font(this.font.getName(), size); //TODO test
+        this.font = new Font(this.font.getName(), size);
     }
 
     public TextAlignment getTextAlignment() {

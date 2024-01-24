@@ -144,7 +144,7 @@ public class ScreenArea {
     public static ScreenArea MIDDLE(int baseWidth, int baseHeight) {
         int x = (ScreenSettings.getScreenWidth() / 2) + (baseWidth / 2);
         int y = (ScreenSettings.getScreenHeight() / 2) + (baseHeight / 2);
-        return new ScreenArea(x, y, baseWidth, baseHeight); //TODO test
+        return new ScreenArea(x, y, baseWidth, baseHeight);
     }
 
     public static ScreenArea HIDDEN() {

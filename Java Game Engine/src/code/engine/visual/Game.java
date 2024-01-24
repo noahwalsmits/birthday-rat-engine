@@ -39,7 +39,8 @@ public class Game extends Application {
             @Override
             public void handle(KeyEvent event) {
                 gameState.keyPressed(event);
-                if (event.getCode().equals(KeyCode.ESCAPE)) { //TODO remove
+                //TODO handle key in game if state keyPressed returns false
+                if (event.getCode().equals(KeyCode.ESCAPE)) {
                     Platform.exit();
                 }
             }
@@ -73,8 +74,6 @@ public class Game extends Application {
 
     @Override
     public void init() {
-        //this.gameLogic = new DemonstrationGameLogic();
-        //this.gameLogic.init();
         this.gameState = new MainMenuState(this); //TODO have the starting state be changed somewhere else
         this.gameState.enter();
     }
@@ -88,8 +87,6 @@ public class Game extends Application {
 
     private void update(double time) {
         //todo fps counter
-
-        //this.gameLogic.update(time); //todo make asynchronous
         this.gameState.update(time);
     }
 

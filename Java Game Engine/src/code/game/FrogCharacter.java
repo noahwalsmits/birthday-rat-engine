@@ -1,6 +1,7 @@
 package code.game;
 
 import code.engine.visual.ScreenArea;
+import code.engine.visual.ScreenSettings;
 import code.engine.visual.drawable.DrawableImage;
 
 public class FrogCharacter {
@@ -25,6 +26,20 @@ public class FrogCharacter {
     public void update(double time) {
         this.xPosition += this.horizontalInput * SPEED * time;
         this.yPosition -= this.verticalInput * SPEED * time;
+
+        if (this.xPosition < 0.0) {
+            this.xPosition = 0.0;
+        }
+        if (this.yPosition < 0.0) {
+            this.yPosition = 0.0;
+        }
+        if (this.xPosition > ScreenSettings.baseWidth - this.screenArea.getBaseWidth()) {
+            this.xPosition = ScreenSettings.baseWidth - this.screenArea.getBaseWidth();
+        }
+        if (this.yPosition > ScreenSettings.baseHeight - this.screenArea.getBaseHeight()) {
+            this.yPosition = ScreenSettings.baseHeight - this.screenArea.getBaseHeight();
+        }
+        
         this.screenArea.moveTo((int) this.xPosition, (int) this.yPosition);
     }
 

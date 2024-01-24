@@ -5,10 +5,12 @@ import code.game.GameInfo;
 import code.game.gamestates.MainMenuState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -37,6 +39,10 @@ public class Game extends Application {
             @Override
             public void handle(KeyEvent event) {
                 gameState.keyPressed(event);
+                //TODO handle key in game if state keyPressed returns false
+                if (event.getCode().equals(KeyCode.ESCAPE)) {
+                    Platform.exit();
+                }
             }
         });
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -68,9 +74,6 @@ public class Game extends Application {
 
     @Override
     public void init() {
-        //this.gameLogic = new DemonstrationGameLogic();
-        //this.gameLogic.init();
-        //TODO demo state
         this.gameState = new MainMenuState(this); //TODO have the starting state be changed somewhere else
         this.gameState.enter();
     }
@@ -84,8 +87,6 @@ public class Game extends Application {
 
     private void update(double time) {
         //todo fps counter
-
-        //this.gameLogic.update(time); //todo make asynchronous
         this.gameState.update(time);
     }
 

@@ -37,8 +37,6 @@ public class ScreenArea {
     }
 
     /**
-     * TODO documentation
-     *
      * @return The width resized to fit the current screen size
      */
     public double getWidth() {
@@ -86,6 +84,51 @@ public class ScreenArea {
                 this.getY() + this.getHeight() <= ScreenSettings.getScreenHeight();
     }
 
+    /**
+     * Checks if this screen area intersects with another
+     *
+     * @param other          The other screen area
+     * @param boundaryOffset Offsets how close the screen areas need to be in order to intersect eachother
+     * @return True if the screen areas overlap after applying the boundary offset
+     */
+    public boolean intersectsWith(ScreenArea other, int boundaryOffset) {
+        return this.baseX < other.baseX + other.baseWidth + boundaryOffset
+                && this.baseX + this.baseWidth + boundaryOffset > other.baseX
+                && this.baseY < other.baseY + other.baseHeight + boundaryOffset
+                && this.baseY + this.baseHeight + boundaryOffset > other.baseY;
+    }
+
+    public boolean intersectsWith(ScreenArea other) {
+        return this.intersectsWith(other, 0);
+    }
+
+    /**
+     * @param other The other screen area
+     * @return The distance between the centers of the two screen areas
+     */
+    public double distanceBetween(ScreenArea other) {
+        return Math.hypot(
+                (this.baseX + this.baseWidth * 0.5) - (other.baseX + other.baseWidth * 0.5),
+                (this.baseY + this.baseHeight * 0.5) - (other.baseY + other.baseHeight * 0.5)
+        );
+    }
+
+    public int getBaseX() {
+        return baseX;
+    }
+
+    public int getBaseY() {
+        return baseY;
+    }
+
+    public int getBaseWidth() {
+        return baseWidth;
+    }
+
+    public int getBaseHeight() {
+        return baseHeight;
+    }
+
     @Override
     public String toString() {
         return "ScreenArea{(" + baseX + ", " + baseY + "), " + baseWidth + "x" + baseHeight + "}";
@@ -101,7 +144,7 @@ public class ScreenArea {
     public static ScreenArea MIDDLE(int baseWidth, int baseHeight) {
         int x = (ScreenSettings.getScreenWidth() / 2) + (baseWidth / 2);
         int y = (ScreenSettings.getScreenHeight() / 2) + (baseHeight / 2);
-        return new ScreenArea(x, y, baseWidth, baseHeight); //TODO test
+        return new ScreenArea(x, y, baseWidth, baseHeight);
     }
 
     public static ScreenArea HIDDEN() {

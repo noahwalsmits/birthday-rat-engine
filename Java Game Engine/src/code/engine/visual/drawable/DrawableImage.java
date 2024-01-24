@@ -10,7 +10,7 @@ public class DrawableImage extends Drawable {
     private String imagePath;
 
     /**
-     * Creates a drawable, keep in mind that it will still need to be added to the render manager for it to be drawn
+     * Creates a drawable and adds it to the render manager
      *
      * @param screenArea The area on the screen the drawable should take up
      * @param imagePath  The path to the image that should be drawn, should lead to an image file in the resources folder
@@ -22,7 +22,8 @@ public class DrawableImage extends Drawable {
             this.image = this.generateImage(imagePath, screenArea);
         }
         this.imagePath = imagePath;
-    } //TODO only allow paths starting from resources/game/images
+        this.show();
+    }
 
     /**
      * Draw the image on the screen

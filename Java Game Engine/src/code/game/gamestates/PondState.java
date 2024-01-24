@@ -5,6 +5,7 @@ import code.engine.sound.AudioManager;
 import code.engine.visual.Game;
 import code.engine.visual.ScreenArea;
 import code.engine.visual.ScreenSettings;
+import code.engine.visual.drawable.DrawableImage;
 import code.engine.visual.drawable.DrawableText;
 import code.engine.visual.drawable.TextInfo;
 import code.game.FlyCharacter;
@@ -37,7 +38,8 @@ public class PondState extends GameState {
 
     @Override
     public void enter() {
-        //TODO add background
+        new DrawableImage("/resources/game/images/moonsurface.png",
+                new ScreenArea(0, 0, 1920, 1080), 0);
         AudioManager.getInstance().playMusic("/resources/game/sound/debussy.mp3", true);
 
         //create characters

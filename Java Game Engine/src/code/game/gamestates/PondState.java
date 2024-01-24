@@ -29,7 +29,7 @@ public class PondState extends GameState {
     private static final int STARTING_ENEMY_COUNT = 5;
     private static final int MAX_ENEMY_COUNT = 10;
     private static final double SPAWN_DISTANCE = 400.0;
-    private static final double RESPAWN_TIME_SECONDS = 2.0;
+    private static final double RESPAWN_TIME_SECONDS = 1.0;
 
     public PondState(Game game) {
         super(game);
@@ -39,6 +39,7 @@ public class PondState extends GameState {
     public void enter() {
         //TODO play music and add background
 
+        //create characters
         this.player = new FrogCharacter(900, 500);
         this.enemies = new ArrayList<>();
         this.eatenEnemies = new ArrayList<>();
@@ -46,6 +47,7 @@ public class PondState extends GameState {
             spawnEnemy();
         }
 
+        //add score display
         TextInfo textInfo = new TextInfo(new Font("calibri", 50.0),
                 TextAlignment.LEFT,
                 VPos.CENTER,
@@ -62,8 +64,8 @@ public class PondState extends GameState {
         int spawnY;
         ScreenArea playerArea = this.player.getScreenArea();
         int playerCenterX = (int) (playerArea.getBaseX() + playerArea.getBaseWidth() * 0.5);
-        int playerCenterY = (int) (playerArea.getBaseY() + playerArea.getBaseHeight() * 0.5);;
-        do {
+        int playerCenterY = (int) (playerArea.getBaseY() + playerArea.getBaseHeight() * 0.5);
+        do { //keep trying random positions until it's far enough from the player
             spawnX = (int) (Math.random() * ScreenSettings.baseWidth);
             spawnY = (int) (Math.random() * ScreenSettings.baseHeight);
         } while (Math.hypot(spawnX + 50 - playerCenterX, spawnY + 50 - playerCenterY) < SPAWN_DISTANCE);
@@ -108,7 +110,7 @@ public class PondState extends GameState {
 
     @Override
     public void keyPressed(KeyEvent event) {
-        switch(event.getCode()) {
+        switch (event.getCode()) {
             case W:
                 this.player.setVerticalInput(1.0);
                 break;
@@ -126,7 +128,7 @@ public class PondState extends GameState {
 
     @Override
     public void keyReleased(KeyEvent event) {
-        switch(event.getCode()) {
+        switch (event.getCode()) {
             case W:
                 this.player.setVerticalInput(0.0);
                 break;

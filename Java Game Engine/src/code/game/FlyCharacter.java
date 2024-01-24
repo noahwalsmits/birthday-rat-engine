@@ -1,5 +1,6 @@
 package code.game;
 
+import code.engine.sound.AudioManager;
 import code.engine.visual.ScreenArea;
 import code.engine.visual.ScreenSettings;
 import code.engine.visual.drawable.DrawableImage;
@@ -43,7 +44,7 @@ public class FlyCharacter {
     public boolean isEaten(FrogCharacter player) {
         if (this.screenArea.intersectsWith(player.getScreenArea(), -50)) {
             this.image.hide();
-            //TODO play sound
+            AudioManager.playSound("/resources/game/sound/munch.mp3");
             return true;
         }
         return false;

@@ -20,7 +20,7 @@ public class FrogCharacter {
         this.xPosition = startX;
         this.yPosition = startY;
         this.screenArea = new ScreenArea(startX, startY, 150, 150);
-        this.image = new DrawableImage("/resources/game/images/frog.png", this.screenArea, 10);
+        this.image = new DrawableImage("/resources/game/images/frog2.png", this.screenArea, 10);
     }
 
     public void update(double time) {

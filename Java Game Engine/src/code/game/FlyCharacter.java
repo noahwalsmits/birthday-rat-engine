@@ -18,7 +18,7 @@ public class FlyCharacter {
         this.xPosition = startX;
         this.yPosition = startY;
         this.screenArea = new ScreenArea(startX, startY, 100, 100);
-        this.image = new DrawableImage("/resources/game/images/fly.png", this.screenArea, 5);
+        this.image = new DrawableImage("/resources/game/images/fly2.png", this.screenArea, 5);
     }
 
     public void update(double time) {

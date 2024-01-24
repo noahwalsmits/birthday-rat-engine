@@ -7,6 +7,7 @@ import code.engine.visual.drawable.DrawableImage;
 import code.engine.visual.drawable.DrawableText;
 import code.engine.visual.drawable.TextInfo;
 import code.engine.visual.ScreenArea;
+import javafx.application.Platform;
 import javafx.geometry.VPos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -115,6 +116,8 @@ public class MainMenuState extends GameState {
                 AudioManager.playSound("/resources/game/sound/frog1.wav", 2.0, 0.7, 0.0, 0);
                 if (this.buttonIndex == 0) {
                     this.changeState(new PondState(this.getGame()));
+                } else if (this.buttonIndex == 2) {
+                    Platform.exit();
                 }
                 break;
             default:
